@@ -1,0 +1,90 @@
+
+.root{
+    -fx-background-color: #EAEEF4;
+}
+
+.side_ankerpane{
+    -fx-background-color: #454F6D;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+}
+
+.inner_pane{
+    -fx-background-color: #F0E4D5;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+    -fx-border-color: #748CF1;
+}
+
+.most_inner_pane{
+    -fx-background-color: #FFFFFF;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+    -fx-border-color: #748CF1;
+}
+
+.btn_dashboard{
+    -fx-background-color: #EEEEEE;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+    -fx-border-color: #748CF1;
+}
+
+.btn_inventory{
+    -fx-background-color: #E0E0E0;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+    -fx-border-color: #748CF1;
+}
+
+.btn_members{
+    -fx-background-color: #EEEEEE;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+    -fx-border-color: #748CF1;
+}
+
+.btn_issue{
+    -fx-background-color: #FFFFFF;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+    -fx-border-color: #748CF1;
+}
+
+.btn_return{
+    -fx-background-color: #EEEEEE;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+    -fx-border-color: #748CF1;
+}
+
+.head{
+    -fx-background-color: #E0E0E0;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+}
+
+.txt_search{
+    -fx-background-color: #EEEEEE;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+    -fx-border-color: #748CF1;
+}
