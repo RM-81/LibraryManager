@@ -1,6 +1,10 @@
 
 .root{
-    -fx-background-color: #EAEEF4;
+    -fx-background-color: #E0E0E0;
+}
+
+.root_one{
+    -fx-background-color: #E0E0E0;
 }
 
 .side_ankerpane{
@@ -87,4 +91,49 @@
     -fx-background-radius:20px;
     -fx-border-style:solid;
     -fx-border-color: #748CF1;
+}
+
+.pane_one{
+    -fx-background-color:#748CF1;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:30px;
+    -fx-background-radius:30px;
+    -fx-border-style:solid;
+    -fx-border-color:#748CF1;
+}
+
+.pane_one1{
+    -fx-background-color:#E0E0E0;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:30px;
+    -fx-background-radius:30px;
+    -fx-border-style:solid;
+    -fx-border-color:#748CF1;
+}
+
+.pane_two{
+    -fx-background-color:#FD9999;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:30px;
+    -fx-background-radius:30px;
+    -fx-border-style:solid;
+    -fx-border-color:#EEEEEE;
+}
+
+.pane_three{
+    -fx-background-color:#353A56;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:30px;
+    -fx-background-radius:30px;
+    -fx-border-style:solid;
+    -fx-border-color:#353A56;
+}
+
+.pane_23{
+    -fx-background-color:#748CF1;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:15px;
+    -fx-background-radius:15px;
+    -fx-border-style:solid;
+    -fx-border-color:#748CF1;
 }
