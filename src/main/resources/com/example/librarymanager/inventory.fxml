@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="936.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.librarymanager.HelloController">
+    <children>
+        <VBox fx:id="root_one" prefHeight="556.0" prefWidth="230.0" styleClass="root_one">
+            <children>
+                <AnchorPane fx:id="side_ankerpane" prefHeight="556.0" prefWidth="222.0" styleClass="side_ankerpane" stylesheets="@style.css">
+                    <children>
+                        <Pane fx:id="inner_pane" layoutX="7.0" layoutY="22.0" prefHeight="58.0" prefWidth="221.0" styleClass="inner_pane" stylesheets="@style.css">
+                            <children>
+                                <ImageView fitHeight="35.0" fitWidth="64.0" layoutX="23.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@icons/images-removebg-preview.png" />
+                                    </image>
+                                </ImageView>
+                                <Pane fx:id="most_inner_pane" layoutX="155.0" layoutY="1.0" prefHeight="58.0" prefWidth="43.0" styleClass="most_inner_pane" stylesheets="@style.css">
+                                    <children>
+                                        <ImageView fitHeight="49.0" fitWidth="29.0" layoutX="7.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@icons/images.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </Pane>
+                            </children>
+                        </Pane>
+                        <Button fx:id="btn_dashboard" layoutX="11.0" layoutY="115.0" mnemonicParsing="false" onAction="#onDashboardButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_dashboard" stylesheets="@style.css" text="Dashboard" textFill="#913434">
+                            <font>
+                                <Font name="Algerian" size="20.0" />
+                            </font>
+                        </Button>
+                        <ImageView fitHeight="35.0" fitWidth="50.0" layoutX="24.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/pngtree-colorful-home-icon-vector-flat-illustration-image_482018.png" />
+                            </image>
+                        </ImageView>
+                        <Button fx:id="btn_inventory" layoutX="13.0" layoutY="165.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="214.0" styleClass="btn_inventory" stylesheets="@style.css" text=" Inventory" textFill="#913434">
+                            <font>
+                                <Font name="Algerian" size="20.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="btn_members" layoutX="13.0" layoutY="214.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="214.0" styleClass="btn_members" stylesheets="@style.css" text="Members" textFill="#913434">
+                            <font>
+                                <Font name="Algerian" size="20.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="btn_issue" layoutX="13.0" layoutY="265.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="214.0" styleClass="btn_issue" stylesheets="@style.css" text="ISSUE" textFill="#913434">
+                            <font>
+                                <Font name="Algerian" size="20.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="btn_return" layoutX="13.0" layoutY="315.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="214.0" styleClass="btn_return" stylesheets="@style.css" text="RETURN" textFill="#913434">
+                            <font>
+                                <Font name="Algerian" size="20.0" />
+                            </font>
+                        </Button>
+                        <ImageView fitHeight="35.0" fitWidth="43.0" layoutX="26.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/Gemini_Generated_Image_lnmd7flnmd7flnmd.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="30.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/Screenshot%202026-02-19%20075204.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="31.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/images%20(1).png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="37.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/Cheerful%20boy%20with%20colorful%20books.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="196.0" layoutX="43.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/Screenshot_2026-02-19_083955-removebg-preview.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+        <Pane prefHeight="556.0" prefWidth="717.0" styleClass="pane_one1">
+            <children>
+                <Pane fx:id="head" layoutX="9.0" layoutY="6.0" prefHeight="70.0" prefWidth="685.0" styleClass="head">
+                    <children>
+                        <ImageView fitHeight="29.0" fitWidth="21.0" layoutX="394.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/download-removebg-preview.png" />
+                            </image>
+                        </ImageView>
+
+                        <TextField fx:id="txt_search" layoutX="423.0" layoutY="21.0" promptText="Search" styleClass="txt_search" stylesheets="@style.css">
+                            <font>
+                                <Font name="Century Gothic" size="12.0" />
+                            </font>
+                        </TextField>
+
+                        <Button fx:id="btn_search_icon" layoutX="590.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                            <graphic>
+                                <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@icons/900834-removebg-preview.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+
+                        <Button fx:id="btn_user_profile" layoutX="640.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                            <graphic>
+                                <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@icons/3135715-removebg-preview.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Label layoutX="14.0" layoutY="11.0" prefHeight="49.0" prefWidth="258.0" text="Bookverse">
+                            <font>
+                                <Font name="Algerian" size="43.0" />
+                            </font>
+                            <textFill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color red="0.7368420958518982" green="0.09824561327695847" blue="0.09824561327695847" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="0.12631578743457794" green="0.11555555462837219" blue="0.11555555462837219" />
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </textFill>
+                        </Label>
+                    </children>
+                </Pane>
+                <Button fx:id="btn_search_icon1" layoutX="291.0" layoutY="120.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" />
+            <TableView fx:id="table" layoutX="20.0" layoutY="76.0" onSort="#onDashboardButtonClick" prefHeight="373.0" prefWidth="668.0" styleClass="table" stylesheets="@style.css">
+              <columns>
+                <TableColumn fx:id="book_id" prefWidth="93.60003852844238" styleClass="book_id" text="Book ID" />
+                  <TableColumn fx:id="book_name" prefWidth="235.20000457763672" styleClass="book_name" text="Book Name" />
+                  <TableColumn fx:id="author" prefWidth="215.20010375976562" styleClass="author" text="Author Name" />
+                  <TableColumn fx:id="status" prefWidth="115.199951171875" styleClass="status" text="Book Status" />
+              </columns>
+            </TableView>
+            <TextField fx:id="id" layoutX="20.0" layoutY="475.0" prefHeight="35.0" prefWidth="119.0" promptText="Book Id" styleClass="id" stylesheets="@style.css">
+               <font>
+                  <Font name="Algerian" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="name" layoutX="153.0" layoutY="475.0" prefHeight="35.0" prefWidth="185.0" promptText="Book name" styleClass="name">
+               <font>
+                  <Font name="Algerian" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="auth" layoutX="351.0" layoutY="475.0" prefHeight="35.0" prefWidth="168.0" promptText="Author" styleClass="auth">
+               <font>
+                  <Font name="Algerian" size="12.0" />
+               </font>
+            </TextField>
+            <Button fx:id="add" layoutX="535.0" layoutY="471.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="130.0" styleClass="add" text="Add Book" textFill="#ffefef">
+               <font>
+                  <Font name="Algerian" size="14.0" />
+               </font>
+            </Button>
+            </children>
+        </Pane>
+    </children>
+</HBox>

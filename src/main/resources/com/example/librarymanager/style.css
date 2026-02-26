@@ -137,3 +137,126 @@
     -fx-border-style:solid;
     -fx-border-color:#748CF1;
 }
+.book_id{
+    -fx-font-family: Algerian;
+    -fx-font-size: 16;
+    -fx-background-color: #486d8f;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-border-style:solid;
+    -fx-border-color: #040303;
+
+}
+
+.table{
+    -fx-border-color: #355470;
+    -fx-background-color: rgba(39, 136, 136, 0.66);
+    -fx-text-alignment: center;
+    -fx-border-radius:5px;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-background-radius:5px;
+    -fx-border-style:solid;
+
+
+}
+
+.book_name{
+    -fx-font-family: Algerian;
+    -fx-font-size: 16;
+    -fx-background-color: #486d8f;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-border-style:solid;
+    -fx-border-color: #040303;
+
+}
+
+.author{
+    -fx-font-family: Algerian;
+    -fx-font-size: 16;
+    -fx-background-color: #486d8f;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-border-style:solid;
+    -fx-border-color: #040303;
+
+}
+
+.status{
+    -fx-font-family: Algerian;
+    -fx-font-size: 16;
+    -fx-background-color: #486d8f;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-border-style:solid;
+    -fx-border-color: #040303;
+
+}
+
+.id{
+    -fx-background-color: #EEEEEE;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+    -fx-border-color: #748CF1;
+}
+
+.auth{
+    -fx-background-color: #EEEEEE;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+    -fx-border-color: #748CF1;
+}
+
+.id{
+    -fx-background-color: #EEEEEE;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+    -fx-border-color: #748CF1;
+}
+
+.name{
+    -fx-background-color: #EEEEEE;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+    -fx-border-color: #748CF1;
+}
+
+.add{
+    -fx-font-family: Algerian;
+    -fx-font-size: 16;
+    -fx-background-color: #486d8f;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-style:solid;
+    -fx-border-color: #040303;
+    -fx-cursor: hand;
+}
+
+
+.add:hover {
+    -fx-background-color: #2ec7cc;
+}
+
+.btn_dashboard:hover{
+    -fx-background-color: #2ec7cc;
+}
+.btn_inventory:hover{
+    -fx-background-color: #2ec7cc;
+}
+.btn_members:hover{
+    -fx-background-color: #2ec7cc;
+}
+.btn_issue:hover{
+    -fx-background-color: #2ec7cc;
+}
+.btn_return:hover{
+    -fx-background-color: #2ec7cc;
+}

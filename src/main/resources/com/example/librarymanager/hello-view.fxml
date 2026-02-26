@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="936.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="936.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.librarymanager.HelloController">
    <children>
       <VBox fx:id="root_one" prefHeight="556.0" prefWidth="230.0" styleClass="root_one">
          <children>
@@ -50,7 +50,7 @@
                         <Image url="@icons/pngtree-colorful-home-icon-vector-flat-illustration-image_482018.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btn_inventory" layoutX="13.0" layoutY="165.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="214.0" styleClass="btn_inventory" stylesheets="@style.css" text=" Inventory" textFill="#913434">
+                  <Button fx:id="btn_inventory" layoutX="13.0" layoutY="165.0" mnemonicParsing="false" onAction="#onInventoryButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_inventory" stylesheets="@style.css" text=" Inventory" textFill="#913434">
                      <font>
                         <Font name="Algerian" size="20.0" />
                      </font>
@@ -155,6 +155,7 @@
                         </LinearGradient>
                      </textFill>
                   </Label>
+                  <Button fx:id="btn_search_icon1" layoutX="392.0" layoutY="20.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="25.0" style="-fx-background-color: transparent; -fx-cursor: hand;" />
                </children>
             </Pane>
             <Label layoutX="21.0" layoutY="83.0" text="Hello Readers,Welcome home!!">
@@ -167,7 +168,6 @@
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="btn_search_icon1" layoutX="291.0" layoutY="120.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" />
             <ImageView fitHeight="28.0" fitWidth="43.0" layoutX="315.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@icons/images-removebg-preview.png" />

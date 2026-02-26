@@ -1,21 +1,23 @@
 package com.example.librarymanager;
 
-public class Book {
-    private String title;
-    private String author;
-    private String isbn;
-    private String status;
+import javafx.beans.property.SimpleStringProperty;
 
-    public Book(String title, String author, String isbn, String status) {
-        this.title = title;
-        this.author = author;
-        this.isbn = isbn;
-        this.status = status;
+public class Book {
+    private final SimpleStringProperty id;
+    private final SimpleStringProperty name;
+    private final SimpleStringProperty author;
+    private final SimpleStringProperty status;
+
+    public Book(String id, String name, String author, String status) {
+        this.id = new SimpleStringProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.author = new SimpleStringProperty(author);
+        this.status = new SimpleStringProperty(status);
     }
 
-    // Getters are required for the TableView to "see" the data
-    public String getTitle() { return title; }
-    public String getAuthor() { return author; }
-    public String getIsbn() { return isbn; }
-    public String getStatus() { return status; }
+    // Getters are required for the TableView to find the data
+    public String getId() { return id.get(); }
+    public String getName() { return name.get(); }
+    public String getAuthor() { return author.get(); }
+    public String getStatus() { return status.get(); }
 }
