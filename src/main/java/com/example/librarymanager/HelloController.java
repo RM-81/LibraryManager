@@ -40,6 +40,7 @@ public class HelloController {
             author.setCellValueFactory(new PropertyValueFactory<>("author"));
             status.setCellValueFactory(new PropertyValueFactory<>("status"));
 
+
             loadBooksFromFile();
             table.setItems(bookList);
         }
@@ -56,6 +57,23 @@ public class HelloController {
     public void onDashboardButtonClick(ActionEvent event) {
         changeScene(event, "hello-view.fxml");
     }
+
+    @FXML
+    public void onIssueButtonClick(ActionEvent event) {
+        changeScene(event, "issue.fxml");
+    }
+
+    @FXML
+    public void onMembersButtonClick(ActionEvent event) {
+        changeScene(event, "members.fxml");
+    }
+
+    @FXML
+    public void onReturnButtonClick(ActionEvent event) {
+        changeScene(event, "return.fxml");
+    }
+
+
 
     private void changeScene(ActionEvent event, String fxmlFile) {
         try {

@@ -55,17 +55,17 @@
                         <Font name="Algerian" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_members" layoutX="13.0" layoutY="214.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="214.0" styleClass="btn_members" stylesheets="@style.css" text="Members" textFill="#913434">
+                  <Button fx:id="btn_members" layoutX="13.0" layoutY="214.0" mnemonicParsing="false" onAction="#onMembersButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_members" stylesheets="@style.css" text="Members" textFill="#913434">
                      <font>
                         <Font name="Algerian" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_issue" layoutX="13.0" layoutY="265.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="214.0" styleClass="btn_issue" stylesheets="@style.css" text="ISSUE" textFill="#913434">
+                  <Button fx:id="btn_issue" layoutX="13.0" layoutY="265.0" mnemonicParsing="false" onAction="#onIssueButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_issue" stylesheets="@style.css" text="ISSUE" textFill="#913434">
                      <font>
                         <Font name="Algerian" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_return" layoutX="13.0" layoutY="315.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="214.0" styleClass="btn_return" stylesheets="@style.css" text="RETURN" textFill="#913434">
+                  <Button fx:id="btn_return" layoutX="13.0" layoutY="315.0" mnemonicParsing="false" onAction="#onReturnButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_return" stylesheets="@style.css" text="RETURN" textFill="#913434">
                      <font>
                         <Font name="Algerian" size="20.0" />
                      </font>

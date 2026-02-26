@@ -2,8 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -50,12 +48,12 @@
                                 <Image url="@icons/pngtree-colorful-home-icon-vector-flat-illustration-image_482018.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="btn_inventory" layoutX="13.0" layoutY="165.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="214.0" styleClass="btn_inventory" stylesheets="@style.css" text=" Inventory" textFill="#913434">
+                        <Button fx:id="btn_inventory" layoutX="13.0" layoutY="165.0" mnemonicParsing="false" onAction="#onInventoryButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_inventory" stylesheets="@style.css" text=" Inventory" textFill="#913434">
                             <font>
                                 <Font name="Algerian" size="20.0" />
                             </font>
                         </Button>
-                        <Button fx:id="btn_members" layoutX="13.0" layoutY="214.0" mnemonicParsing="false" onAction="#onMembersButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_members" stylesheets="@style.css" text="Members" textFill="#913434">
+                        <Button fx:id="btn_members" layoutX="13.0" layoutY="214.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="214.0" styleClass="btn_members" stylesheets="@style.css" text="Members" textFill="#913434">
                             <font>
                                 <Font name="Algerian" size="20.0" />
                             </font>
@@ -158,34 +156,6 @@
                     </children>
                 </Pane>
                 <Button fx:id="btn_search_icon1" layoutX="291.0" layoutY="120.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" />
-            <TableView fx:id="table" layoutX="20.0" layoutY="76.0" onSort="#onDashboardButtonClick" prefHeight="360.0" prefWidth="668.0" styleClass="table" stylesheets="@style.css">
-              <columns>
-                <TableColumn fx:id="book_id" prefWidth="93.60003852844238" styleClass="book_id" text="Book ID" />
-                  <TableColumn fx:id="book_name" prefWidth="235.20000457763672" styleClass="book_name" text="Book Name" />
-                  <TableColumn fx:id="author" prefWidth="215.20010375976562" styleClass="author" text="Author Name" />
-                  <TableColumn fx:id="status" prefWidth="115.199951171875" styleClass="status" text="Book Status" />
-              </columns>
-            </TableView>
-            <TextField fx:id="id" layoutX="20.0" layoutY="475.0" prefHeight="35.0" prefWidth="119.0" promptText="Book Id" styleClass="id" stylesheets="@style.css">
-               <font>
-                  <Font name="Algerian" size="12.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="name" layoutX="153.0" layoutY="475.0" prefHeight="35.0" prefWidth="185.0" promptText="Book name" styleClass="name">
-               <font>
-                  <Font name="Algerian" size="12.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="auth" layoutX="351.0" layoutY="475.0" prefHeight="35.0" prefWidth="168.0" promptText="Author" styleClass="auth">
-               <font>
-                  <Font name="Algerian" size="12.0" />
-               </font>
-            </TextField>
-            <Button fx:id="add" layoutX="535.0" layoutY="471.0" mnemonicParsing="false" onAction="#onAddBookClick" prefHeight="43.0" prefWidth="130.0" styleClass="add" text="Add Book" textFill="#ffefef">
-               <font>
-                  <Font name="Algerian" size="14.0" />
-               </font>
-            </Button>
             </children>
         </Pane>
     </children>
