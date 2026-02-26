@@ -158,7 +158,7 @@
                     </children>
                 </Pane>
                 <Button fx:id="btn_search_icon1" layoutX="291.0" layoutY="120.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" />
-            <TableView fx:id="table" layoutX="20.0" layoutY="76.0" onSort="#onDashboardButtonClick" prefHeight="373.0" prefWidth="668.0" styleClass="table" stylesheets="@style.css">
+            <TableView fx:id="table" layoutX="20.0" layoutY="76.0" onSort="#onDashboardButtonClick" prefHeight="360.0" prefWidth="668.0" styleClass="table" stylesheets="@style.css">
               <columns>
                 <TableColumn fx:id="book_id" prefWidth="93.60003852844238" styleClass="book_id" text="Book ID" />
                   <TableColumn fx:id="book_name" prefWidth="235.20000457763672" styleClass="book_name" text="Book Name" />
@@ -181,7 +181,7 @@
                   <Font name="Algerian" size="12.0" />
                </font>
             </TextField>
-            <Button fx:id="add" layoutX="535.0" layoutY="471.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="130.0" styleClass="add" text="Add Book" textFill="#ffefef">
+            <Button fx:id="add" layoutX="535.0" layoutY="471.0" mnemonicParsing="false" onAction="#onAddBookClick" prefHeight="43.0" prefWidth="130.0" styleClass="add" text="Add Book" textFill="#ffefef">
                <font>
                   <Font name="Algerian" size="14.0" />
                </font>
