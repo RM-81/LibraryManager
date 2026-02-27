@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: linear-gradient(to bottom right, #1e3c72, #2a5298); -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: linear-gradient(to bottom right, #688ecf, #061e47); -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label alignment="CENTER" layoutX="10.0" layoutY="7.0" prefHeight="32.0" prefWidth="330.0" text="Bookverse">
             <font><Font name="Algerian" size="30.0" /></font>
@@ -31,14 +31,14 @@
          </textFill>
         </Label>
         <Label fx:id="cardName" layoutX="26.0" layoutY="84.0" text="NAME" textFill="#fffcfc">
-            <font><Font name="Baskerville Old Face" size="27.0" /></font>
+            <font><Font name="Algerian" size="20.0" /></font>
         </Label>
         <Label fx:id="cardProf" layoutX="24.0" layoutY="126.0" text="Profession" textFill="#fffcfc">
-            <font><Font name="Baskerville Old Face" size="20.0" /></font>
+            <font><Font name="Algerian" size="16.0" /></font>
         </Label>
         <Label fx:id="cardMail" layoutX="25.0" layoutY="163.0" text="Email" textFill="#fffcfc">
          <font>
-            <Font name="Baskerville Old Face" size="18.0" />
+            <Font name="Algerian" size="14.0" />
          </font></Label>
       <Label layoutX="80.0" layoutY="41.0" text="Membership card">
          <font>
@@ -71,12 +71,12 @@
             <Image url="@icons/Screenshot_2026-02-19_083955-removebg-preview.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="64.0" fitWidth="99.0" layoutX="227.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="64.0" fitWidth="99.0" layoutX="226.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@icons/book-and-reading-statistics-min-removebg-preview.png" />
          </image>
       </ImageView>
-      <Label layoutX="236.0" layoutY="129.0" text="Gold reader">
+      <Label layoutX="235.0" layoutY="136.0" text="Gold reader">
          <font>
             <Font name="Arial Rounded MT Bold" size="14.0" />
          </font>
