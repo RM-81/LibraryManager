@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: linear-gradient(to bottom right, #1e3c72, #2a5298); -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label alignment="CENTER" layoutX="10.0" layoutY="7.0" prefHeight="32.0" prefWidth="330.0" text="Bookverse">
+            <font><Font name="Algerian" size="30.0" /></font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.13257576660676437">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.8631578683853149" green="0.05434697866439819" blue="0.05434697866439819" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+        </Label>
+        <Label fx:id="cardName" layoutX="26.0" layoutY="84.0" text="NAME" textFill="#fffcfc">
+            <font><Font name="Baskerville Old Face" size="27.0" /></font>
+        </Label>
+        <Label fx:id="cardProf" layoutX="24.0" layoutY="126.0" text="Profession" textFill="#fffcfc">
+            <font><Font name="Baskerville Old Face" size="20.0" /></font>
+        </Label>
+        <Label fx:id="cardMail" layoutX="25.0" layoutY="163.0" text="Email" textFill="#fffcfc">
+         <font>
+            <Font name="Baskerville Old Face" size="18.0" />
+         </font></Label>
+      <Label layoutX="80.0" layoutY="41.0" text="Membership card">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="23.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.13257576660676437">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.8631578683853149" green="0.05434697866439819" blue="0.05434697866439819" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <ImageView fitHeight="58.0" fitWidth="52.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons/images-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="43.0" fitWidth="52.0" layoutX="293.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons/Screenshot_2026-02-19_083955-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="64.0" fitWidth="99.0" layoutX="227.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons/book-and-reading-statistics-min-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="236.0" layoutY="129.0" text="Gold reader">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9053030429464399">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.49473685026168823" green="0.3298245668411255" blue="5.492682422910547E-17" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.832105278968811" green="0.8947368264198303" blue="0.2684210538864136" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+    </children>
+</AnchorPane>

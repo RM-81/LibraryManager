@@ -11,3 +11,6 @@ e34,to kill a mockingbird,herper lee,Available
 h56,don quixote,miguel de cervantes,Available
 p34,beloved,toni morrison,Available
 r45,mrs.dalloway, virginia woolf,Available
+H56,A Study in scarlet,Sir arthur conan Doyle,Available
+r56,the metamorphosis,franz kafka,Available
+w03,crime and punishment,Fyodor Dostoevsky,Available

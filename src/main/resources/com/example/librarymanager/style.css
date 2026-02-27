@@ -269,3 +269,58 @@
     -fx-background-color: #2ec7cc;
 }
 
+.memname{
+    -fx-font-family: Algerian;
+    -fx-font-size: 16;
+    -fx-background-color: #4eb0ff;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-border-style:solid;
+    -fx-border-color: #040303;
+    -fx-text-fill: white!important;
+}
+
+.prof{
+    -fx-font-family: Algerian;
+    -fx-font-size: 16;
+    -fx-background-color: #4eb0ff;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-border-style:solid;
+    -fx-border-color: #040303;
+    -fx-text-fill: white!important;
+}
+
+.iss{
+    -fx-font-family: Algerian;
+    -fx-font-size: 16;
+    -fx-background-color: #4eb0ff;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-border-style:solid;
+    -fx-border-color: #040303;
+    -fx-text-fill: white!important;
+}
+
+.cont{
+    -fx-font-family: Algerian;
+    -fx-font-size: 16;
+    -fx-background-color: #4eb0ff;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-border-style:solid;
+    -fx-border-color: #040303;
+    -fx-text-fill: white!important;
+}
+.address{
+    -fx-font-family: Algerian;
+    -fx-font-size: 16;
+    -fx-background-color: #4eb0ff;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-border-style:solid;
+    -fx-border-color: #040303;
+    -fx-text-fill: white!important;
+}
+
+

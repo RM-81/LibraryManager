@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -48,7 +50,7 @@
                                 <Image url="@icons/pngtree-colorful-home-icon-vector-flat-illustration-image_482018.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="btn_inventory" layoutX="13.0" layoutY="165.0" mnemonicParsing="false" onAction="#onInventoryButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_inventory" stylesheets="@style.css" text=" Inventory" textFill="#913434">
+                        <Button fx:id="btn_inventory" layoutX="10.0" layoutY="165.0" mnemonicParsing="false" onAction="#onInventoryButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_inventory" stylesheets="@style.css" text=" Inventory" textFill="#913434">
                             <font>
                                 <Font name="Algerian" size="20.0" />
                             </font>
@@ -156,6 +158,123 @@
                     </children>
                 </Pane>
                 <Button fx:id="btn_search_icon1" layoutX="291.0" layoutY="120.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" />
+                <TableView fx:id="memberTable" layoutX="9.0" layoutY="82.0" prefHeight="241.0" prefWidth="685.0">
+                    <columns>
+                        <TableColumn fx:id="memname" prefWidth="135.2000217437744" styleClass="memname" text="Member Name" />
+                        <TableColumn fx:id="prof" prefWidth="100.0" styleClass="prof" text="Profession" />
+                        <TableColumn fx:id="iss" prefWidth="61.59991455078125" styleClass="iss" text="Issues" />
+                        <TableColumn fx:id="cont" prefWidth="115.2000732421875" styleClass="cont" text="Contact" />
+                        <TableColumn fx:id="address" prefWidth="269.6001281738281" styleClass="address" text="Mail Address" />
+                    </columns>
+                </TableView>
+                <Pane layoutX="9.0" layoutY="332.0" prefHeight="200.0" prefWidth="685.0">
+                    <children>
+                        <Label layoutX="14.0" layoutY="7.0" prefHeight="17.0" prefWidth="294.0" text="Get membership now!!!">
+                            <font>
+                                <Font name="Algerian" size="25.0" />
+                            </font>
+                            <textFill>
+                                <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.3674241629513828">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color red="0.035087719559669495" green="0.2836257219314575" blue="0.6315789222717285" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="0.8947368264198303" green="0.27504873275756836" blue="0.27504873275756836" />
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </textFill>
+                        </Label>
+                        <TextField fx:id="nam" layoutX="14.0" layoutY="44.0" prefHeight="29.0" prefWidth="186.0" promptText="Name" styleClass="auth">
+                            <font>
+                                <Font name="Algerian" size="12.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="mail" layoutX="14.0" layoutY="88.0" prefHeight="28.0" prefWidth="186.0" promptText="Mail address" styleClass="auth">
+                            <font>
+                                <Font name="Algerian" size="12.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="proff" layoutX="212.0" layoutY="44.0" prefHeight="28.0" prefWidth="198.0" promptText="Profession" styleClass="auth">
+                            <font>
+                                <Font name="Algerian" size="12.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="conta" layoutX="212.0" layoutY="88.0" prefHeight="28.0" prefWidth="198.0" promptText="Contact" styleClass="auth">
+                            <font>
+                                <Font name="Algerian" size="12.0" />
+                            </font>
+                        </TextField>
+                        <Button fx:id="bec" layoutX="426.0" layoutY="59.0" mnemonicParsing="false" onAction="#onBecomeMemberClick" prefHeight="43.0" prefWidth="198.0" styleClass="add" text="Become one of us!!">
+                            <font>
+                                <Font name="Algerian" size="20.0" />
+                            </font>
+                            <textFill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color red="0.23157894611358643" green="0.20584794878959656" blue="0.20584794878959656" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="0.621052622795105" green="0.19168290495872498" blue="0.10580896586179733" />
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </textFill>
+                        </Button>
+                  <Label layoutX="42.0" layoutY="144.0" text="Already Member?">
+                     <font>
+                        <Font name="Algerian" size="28.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.2831968665122986" green="0.42105263471603394" blue="0.2619883120059967" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.6000000238418579" green="0.11999999731779099" blue="0.11999999731779099" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+                  <Button fx:id="btn_see_card" layoutX="317.0" layoutY="131.0" mnemonicParsing="false" onAction="#onSeeMyCardClick" prefHeight="58.0" prefWidth="186.0" styleClass="add" text="See My Card">
+                     <font>
+                        <Font name="Algerian" size="20.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.821052610874176" green="0.5423002243041992" blue="0.4409356713294983" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.9684210419654846" green="0.025107212364673615" blue="0.025107212364673615" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                    </children>
+                </Pane>
             </children>
         </Pane>
     </children>
