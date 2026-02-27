@@ -323,4 +323,18 @@
     -fx-text-fill: white!important;
 }
 
+.root_one{
+    -fx-background-color: #052d63;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+}
 
+.logo{
+    -fx-background-color: #66bbc3;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+    -fx-border-style:solid;
+}
