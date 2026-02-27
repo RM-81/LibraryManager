@@ -14,3 +14,4 @@ r45,mrs.dalloway, virginia woolf,Available
 H56,A Study in scarlet,Sir arthur conan Doyle,Available
 r56,the metamorphosis,franz kafka,Available
 w03,crime and punishment,Fyodor Dostoevsky,Available
+K78,la miserable,victor hugo,Available
