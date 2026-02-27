@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -18,11 +19,16 @@ import java.util.Scanner;
 
 public class HelloController {
 
-    // --- Session Management ---
-    public static String loggedInMemberName = "Rajib Ahammed";
+    // --- Session & Stage Management ---
+    public static String loggedInMemberName = "Guest";
+    private static Stage primaryStage; // Reference to the main window for scene switching
 
     // --- FXML UI Elements ---
     @FXML private Button btn_user_profile;
+
+    // Login Popup Elements
+    @FXML private TextField loginEmail;
+    @FXML private PasswordField loginPass;
 
     // Inventory UI
     @FXML private TableView<Book> table;
@@ -43,7 +49,7 @@ public class HelloController {
 
     @FXML
     public void initialize() {
-        // 1. Setup Profile Dropdown (If button exists in current scene)
+        // 1. Setup Profile Dropdown
         if (btn_user_profile != null) {
             setupProfileMenu();
         }
@@ -72,49 +78,87 @@ public class HelloController {
         }
     }
 
+    // --- 1. POPUP & AUTHENTICATION LOGIC ---
+
+    @FXML
+    public void onLoginClick(ActionEvent event) {
+        // Save the reference to the Main Stage (the landing page window)
+        primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("login_popup.fxml"));
+            Parent root = loader.load();
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL); // Locks the background
+            popupStage.setTitle("Bookverse Login");
+            popupStage.setScene(new Scene(root));
+            popupStage.show();
+        } catch (IOException e) {
+            System.err.println("Could not load login-popup.fxml");
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void processLogin(ActionEvent event) {
+        String email = loginEmail.getText();
+        String pass = loginPass.getText(); // You can add password check logic here
+
+        loadMembersFromFile();
+
+        // Find member by Email
+        Member user = memberList.stream()
+                .filter(m -> m.getMail().equalsIgnoreCase(email))
+                .findFirst().orElse(null);
+
+        if (user != null) {
+            loggedInMemberName = user.getName();
+
+            // Close the Popup Window
+            Stage currentPopup = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentPopup.close();
+
+            // Switch the Main Window to Dashboard
+            updateMainScene("hello-view.fxml");
+            System.out.println("Login success: " + loggedInMemberName);
+        } else {
+            System.err.println("Login Failed: User not found in members.txt");
+        }
+    }
+
+    @FXML
+    public void closePopup(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    // --- 2. PROFILE & LOGOUT ---
+
     private void setupProfileMenu() {
         ContextMenu profileMenu = new ContextMenu();
-
         MenuItem profile = new MenuItem("My Profile");
-        MenuItem dues = new MenuItem("My Dues");
-        MenuItem issues = new MenuItem("My Issues");
-        MenuItem returns = new MenuItem("My Returns");
-        MenuItem fines = new MenuItem("My Fines");
         MenuItem logout = new MenuItem("Log Out");
 
-        // Action Handlers
         profile.setOnAction(e -> onSeeMyCardClick());
 
         logout.setOnAction(e -> {
-            loggedInMemberName = ""; // Clear session
-            try {
-                // Switch back to the default Login page
-                Parent root = FXMLLoader.load(getClass().getResource("log_out.fxml"));
-                Stage stage = (Stage) btn_user_profile.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Bookverse - Login");
-                System.out.println("User logged out.");
-            } catch (IOException ex) {
-                System.err.println("Error loading login page.");
-                ex.printStackTrace();
-            }
+            loggedInMemberName = "Guest";
+            updateMainScene("log_out.fxml"); // Redirect back to landing page
+            System.out.println("User logged out.");
         });
 
-        profileMenu.getItems().addAll(profile, dues, issues, returns, fines, new SeparatorMenuItem(), logout);
-
-        btn_user_profile.setOnAction(event -> {
-            profileMenu.show(btn_user_profile, Side.BOTTOM, 0, 0);
-        });
+        profileMenu.getItems().addAll(profile, new SeparatorMenuItem(), logout);
+        btn_user_profile.setOnAction(event -> profileMenu.show(btn_user_profile, Side.BOTTOM, 0, 0));
     }
 
-    // --- Navigation ---
+    // --- 3. NAVIGATION ---
+
     @FXML public void onInventoryButtonClick(ActionEvent event) { changeScene(event, "inventory.fxml"); }
     @FXML public void onDashboardButtonClick(ActionEvent event) { changeScene(event, "hello-view.fxml"); }
     @FXML public void onMembersButtonClick(ActionEvent event) { changeScene(event, "members.fxml"); }
     @FXML public void onIssueButtonClick(ActionEvent event) { changeScene(event, "issue.fxml"); }
     @FXML public void onReturnButtonClick(ActionEvent event) { changeScene(event, "return.fxml"); }
 
-    @FXML public void onLoginClick(ActionEvent event) { changeScene(event, "hello-view.fxml"); }
     @FXML public void onSignUpClick(ActionEvent event) { changeScene(event, "members.fxml"); }
 
     private void changeScene(ActionEvent event, String fxmlFile) {
@@ -122,13 +166,22 @@ public class HelloController {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.show();
         } catch (IOException e) {
             System.err.println("Error loading " + fxmlFile);
         }
     }
 
-    // --- Actions ---
+    private void updateMainScene(String fxmlFile) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+            primaryStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // --- 4. DATA ACTIONS & FILE PERSISTENCE ---
+
     @FXML
     public void onAddBookClick() {
         if (id.getText().isEmpty() || name.getText().isEmpty()) return;
@@ -169,7 +222,6 @@ public class HelloController {
         } catch (IOException e) { e.printStackTrace(); }
     }
 
-    // --- File Persistence ---
     private void saveToFile(String fileName, String data) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
             writer.write(data);
