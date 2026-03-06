@@ -4,48 +4,52 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Book {
-    // We use StringProperty for better compatibility with JavaFX TableViews
     private final StringProperty id;
     private final StringProperty name;
     private final StringProperty author;
     private final StringProperty status;
+    private int totalIssues; // NEW: Added to track popularity for the popup
 
-    public Book(String id, String name, String author, String status) {
+    public Book(String id, String name, String author, String status, int totalIssues) {
         this.id = new SimpleStringProperty(id);
         this.name = new SimpleStringProperty(name);
         this.author = new SimpleStringProperty(author);
         this.status = new SimpleStringProperty(status);
+        this.totalIssues = totalIssues;
     }
 
-    // --- Getters (Required by PropertyValueFactory) ---
-
-    // If your column factory is new PropertyValueFactory<>("id")
+    // --- Getters ---
     public String getId() { return id.get(); }
     public StringProperty idProperty() { return id; }
 
-    // If your column factory is new PropertyValueFactory<>("book_name")
     public String getName() { return name.get(); }
     public StringProperty nameProperty() { return name; }
 
-    // If your column factory is new PropertyValueFactory<>("author")
     public String getAuthor() { return author.get(); }
     public StringProperty authorProperty() { return author; }
 
-    // If your column factory is new PropertyValueFactory<>("status")
     public String getStatus() { return status.get(); }
     public StringProperty statusProperty() { return status; }
+
+    public int getTotalIssues() { return totalIssues; } // NEW
 
     // --- Setters ---
     public void setId(String value) { id.set(value); }
     public void setName(String value) { name.set(value); }
     public void setAuthor(String value) { author.set(value); }
     public void setStatus(String value) { status.set(value); }
+    public void setTotalIssues(int totalIssues) { this.totalIssues = totalIssues; } // NEW
+
+    // Increments issue count by 1 when the Issue button is clicked
+    public void incrementTotalIssues() {
+        this.totalIssues++;
+    }
 
     /**
-     * Helper for saving to a file in CSV format
+     * Updated for saving: ID, Name, Author, Status, TotalIssues
      */
     @Override
     public String toString() {
-        return getId() + "," + getName() + "," + getAuthor() + "," + getStatus();
+        return getId() + "," + getName() + "," + getAuthor() + "," + getStatus() + "," + totalIssues;
     }
 }

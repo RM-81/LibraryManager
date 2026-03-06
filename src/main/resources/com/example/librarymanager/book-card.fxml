@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="220.0" prefWidth="380.0" style="-fx-background-color: linear-gradient(to bottom right, #2c3e50, #000000); -fx-background-radius: 15; -fx-border-color: #748CF1; -fx-border-radius: 15; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefWidth="360.0" text="BOOK DETAILS">
+    <font><Font name="Algerian" size="24.0" /></font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.8421052694320679" green="0.07797271013259888" blue="0.07797271013259888" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006729475100942127">
+                     <color>
+                        <Color red="0.8421052694320679" green="0.07797271013259888" blue="0.07797271013259888" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.6736842393875122" green="0.5514230132102966" blue="0.5514230132102966" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+</Label>
+
+<ImageView fitHeight="60.0" fitWidth="60.0" layoutX="20.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+    <image><Image url="@icons/h.png" /></image>
+</ImageView>
+
+<Label layoutX="101.0" layoutY="55.0" text="ID:" textFill="#748cf1"><font><Font name="Georgia Bold" size="14.0" /></font></Label>
+<Label fx:id="cardBookId" layoutX="134.0" layoutY="48.0" text="B001">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.3598483909260143" startY="0.6515151677709636">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.08399999886751175" green="0.8399999737739563" blue="0.7162385582923889" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006729475100942127">
+                     <color>
+                        <Color red="0.08399999886751175" green="0.8399999737739563" blue="0.7162385582923889" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.0975609756097561">
+                     <color>
+                        <Color red="0.8785964846611023" green="0.9473684430122375" blue="0.35789474844932556" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.8100000023841858" green="0.06480000168085098" blue="0.06480000168085098" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Kalpurush" size="20.0" />
+         </font></Label>
+
+<Label layoutX="104.0" layoutY="80.0" text="Title:" textFill="#748cf1"><font><Font name="Georgia Bold" size="14.0" /></font></Label>
+<Label fx:id="cardBookName" layoutX="146.0" layoutY="73.0" text="Sample Book">
+         <font>
+            <Font name="Kalpurush" size="20.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.3598483909260143" startY="0.6515151677709636">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.08399999886751175" green="0.8399999737739563" blue="0.7162385582923889" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006729475100942127">
+                     <color>
+                        <Color red="0.08399999886751175" green="0.8399999737739563" blue="0.7162385582923889" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.0975609756097561">
+                     <color>
+                        <Color red="0.8785964846611023" green="0.9473684430122375" blue="0.35789474844932556" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.8100000023841858" green="0.06480000168085098" blue="0.06480000168085098" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill></Label>
+
+<Label layoutX="96.0" layoutY="104.0" text="Author:" textFill="#748cf1"><font><Font name="Georgia Bold" size="14.0" /></font></Label>
+<Label fx:id="cardAuthor" layoutX="154.0" layoutY="97.0" text="Author Name">
+         <font>
+            <Font name="Kalpurush" size="20.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.3598483909260143" startY="0.6515151677709636">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.08399999886751175" green="0.8399999737739563" blue="0.7162385582923889" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006729475100942127">
+                     <color>
+                        <Color red="0.08399999886751175" green="0.8399999737739563" blue="0.7162385582923889" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.0975609756097561">
+                     <color>
+                        <Color red="0.8785964846611023" green="0.9473684430122375" blue="0.35789474844932556" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.8100000023841858" green="0.06480000168085098" blue="0.06480000168085098" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill></Label>
+
+<Label layoutX="20.0" layoutY="141.0" prefHeight="28.0" prefWidth="109.0" text="Total Issues:" textFill="#748cf1"><font><Font name="Ink Free" size="18.0" /></font></Label>
+<Label fx:id="cardTotalIssues" layoutX="130.0" layoutY="122.0" prefHeight="39.0" prefWidth="23.0" text="0">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="0.7400000095367432" blue="0.06761414557695389" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006729475100942127">
+                     <color>
+                        <Color green="0.7400000095367432" blue="0.5550000071525574" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.7052631378173828" green="0.6011279821395874" blue="0.22463937103748322" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Javanese Text" size="27.0" />
+         </font></Label>
+
+<Label layoutX="211.0" layoutY="141.0" prefHeight="18.0" prefWidth="68.0" text="Status:" textFill="#748cf1"><font><Font name="Ink Free" size="21.0" /></font></Label>
+<Label fx:id="cardStatus" layoutX="279.0" layoutY="146.0" prefHeight="28.0" prefWidth="83.0" text="Available">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="0.7400000095367432" blue="0.06761414557695389" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006729475100942127">
+                     <color>
+                        <Color green="0.7400000095367432" blue="0.5550000071525574" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.7052631378173828" green="0.6011279821395874" blue="0.22463937103748322" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Kalpurush" size="19.0" />
+         </font></Label>
+</children>
+        </AnchorPane>
