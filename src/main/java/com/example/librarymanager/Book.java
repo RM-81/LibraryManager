@@ -26,7 +26,7 @@ public class Book {
         this.status = new SimpleStringProperty(status);
         this.totalIssues = totalIssues;
 
-        // এখানে ডাইরেক্ট অ্যাসাইন করবি, পার্স করার দরকার নেই কারণ এগুলো অলরেডি LocalDate
+
         this.issueDate = issueDate;
         this.dueDate = dueDate;
         this.bookFine = bookFine;

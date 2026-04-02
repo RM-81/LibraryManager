@@ -14,7 +14,7 @@ public class Member {
     private int finedCount;
     private String paymentHistory;
 
-    // ১২টি আর্গুমেন্টের কনস্ট্রাক্টর (তোর কন্ট্রোলারের সাথে ম্যাচ করা)
+
     public Member(String name, String profession, int issues, String contact, String mail,
                   double fine, int freq, String blockStatus, double memberTotalPaid,
                   double memberTotalDue, int finedCount, String paymentHistory) {
@@ -58,7 +58,7 @@ public class Member {
     public String getPaymentHistory() { return (paymentHistory == null || paymentHistory.equals("none")) ? "" : paymentHistory; }
     public void setPaymentHistory(String history) { this.paymentHistory = history; }
 
-    // ফাইল সেভ করার জন্য toString মেথড (১২টি কমা সেপারেটেড ভ্যালু)
+
     @Override
     public String toString() {
         return name + "," + profession + "," + issues + "," + contact + "," + mail + "," +
