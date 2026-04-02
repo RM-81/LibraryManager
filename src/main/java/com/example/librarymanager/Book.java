@@ -2,23 +2,51 @@ package com.example.librarymanager;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import java.time.LocalDate;
 
 public class Book {
     private final StringProperty id;
     private final StringProperty name;
     private final StringProperty author;
     private final StringProperty status;
-    private int totalIssues; // NEW: Added to track popularity for the popup
+    private int totalIssues;
 
-    public Book(String id, String name, String author, String status, int totalIssues) {
+    // Fine and Tracker Fields
+    private LocalDate issueDate;
+    private LocalDate dueDate;
+    private double bookFine;
+    private String issuedTo;
+
+    // Updated Constructor to handle all fields
+    public Book(String id, String name, String author, String status, int totalIssues,
+                LocalDate issueDate, LocalDate dueDate, double bookFine, String issuedTo) {
         this.id = new SimpleStringProperty(id);
         this.name = new SimpleStringProperty(name);
         this.author = new SimpleStringProperty(author);
         this.status = new SimpleStringProperty(status);
         this.totalIssues = totalIssues;
+
+        // এখানে ডাইরেক্ট অ্যাসাইন করবি, পার্স করার দরকার নেই কারণ এগুলো অলরেডি LocalDate
+        this.issueDate = issueDate;
+        this.dueDate = dueDate;
+        this.bookFine = bookFine;
+        this.issuedTo = issuedTo;
     }
 
-    // --- Getters ---
+    // --- Getters and Setters ---
+    public LocalDate getIssueDate() { return issueDate; }
+    public void setIssueDate(LocalDate issueDate) { this.issueDate = issueDate; }
+
+    public LocalDate getDueDate() { return dueDate; }
+    public void setDueDate(LocalDate dueDate) { this.dueDate = dueDate; }
+    public void setStatus(String value) { this.status.set(value); }
+
+    public double getBookFine() { return bookFine; }
+    public void setBookFine(double bookFine) { this.bookFine = bookFine; }
+
+    public String getIssuedTo() { return issuedTo; }
+    public void setIssuedTo(String issuedTo) { this.issuedTo = issuedTo; }
+
     public String getId() { return id.get(); }
     public StringProperty idProperty() { return id; }
 
@@ -31,25 +59,19 @@ public class Book {
     public String getStatus() { return status.get(); }
     public StringProperty statusProperty() { return status; }
 
-    public int getTotalIssues() { return totalIssues; } // NEW
+    public int getTotalIssues() { return totalIssues; }
+    public void setTotalIssues(int totalIssues) { this.totalIssues = totalIssues; }
 
-    // --- Setters ---
-    public void setId(String value) { id.set(value); }
-    public void setName(String value) { name.set(value); }
-    public void setAuthor(String value) { author.set(value); }
-    public void setStatus(String value) { status.set(value); }
-    public void setTotalIssues(int totalIssues) { this.totalIssues = totalIssues; } // NEW
-
-    // Increments issue count by 1 when the Issue button is clicked
-    public void incrementTotalIssues() {
-        this.totalIssues++;
-    }
+    public void incrementTotalIssues() { this.totalIssues++; }
 
     /**
-     * Updated for saving: ID, Name, Author, Status, TotalIssues
+     * Replace this: Updated to save 9 fields to the file
      */
     @Override
     public String toString() {
-        return getId() + "," + getName() + "," + getAuthor() + "," + getStatus() + "," + totalIssues;
+        String iDate = (issueDate == null) ? "none" : issueDate.toString();
+        String dDate = (dueDate == null) ? "none" : dueDate.toString();
+        return getId() + "," + getName() + "," + getAuthor() + "," + getStatus() + "," +
+                totalIssues + "," + iDate + "," + dDate + "," + bookFine + "," + issuedTo;
     }
 }

@@ -1,5 +1,4 @@
-D24,it ends with us,collen hoover,Issued,1
-C24,inferno,dan brown,Issued,1
-A23,deyal,humayun ahmed,Issued,1
-e34,nil projapoti,humayun ahmed,Issued,1
-b23,pother pyachali,shorotchandra bandopadhay,Issued,1
+sad,vgszdgasg,gsgsgs,Available,1,none,none,100.0,none
+asg,sga,hga,Available,0,none,none,0.0,none
+A23,deyal,humayun ahmed,Issued,7,2026-03-07,2026-03-05,100.0,minan2116@gmail.com
+B24,Mom,humayun ahmed,Issued,4,2026-03-07,2026-03-05,100.0,s

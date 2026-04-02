@@ -1,50 +1,68 @@
 package com.example.librarymanager;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 public class Member {
     private String name;
     private String profession;
     private int issues;
     private String contact;
     private String mail;
-    private double fineAmount;
-    private int fineFreq;
-    private String blockDate;
+    private double fine;          // General fine field
+    private int freq;           // Frequency
+    private String blockStatus;
+    private double memberTotalPaid;
+    private double memberTotalDue;
+    private int finedCount;
+    private String paymentHistory;
 
-    // কনস্ট্রাক্টর আপনার যা আছে তাই থাকবে...
-
-    // --- এই মেথডগুলো অবশ্যই থাকতে হবে ---
-    public String getName() { return name; }
-    public String getProfession() { return profession; }
-    public int getIssues() { return issues; }
-    public String getContact() { return contact; } // এইটা মিসিং ছিল
-    public String getMail() { return mail; }
-    public double getFineAmount() { return fineAmount; }
-    public int getFineFreq() { return fineFreq; }
-    public String getBlockDate() { return blockDate; }
-
-    // ডাটা সেভ এবং আপডেটের জন্য সেটার (Setters)
-    public void setIssues(int issues) { this.issues = issues; }
-    public void setFineAmount(double fineAmount) { this.fineAmount = fineAmount; }
-    public void setFineFreq(int fineFreq) { this.fineFreq = fineFreq; }
-
-    @Override
-    public String toString() {
-        return name + "," + profession + "," + issues + "," + contact + "," + mail + "," + fineAmount + "," + fineFreq + "," + blockDate;
-    }
-    public Member(String name, String profession, int issues, String contact, String mail, double fineAmount, int fineFreq, String blockDate) {
+    // ১২টি আর্গুমেন্টের কনস্ট্রাক্টর (তোর কন্ট্রোলারের সাথে ম্যাচ করা)
+    public Member(String name, String profession, int issues, String contact, String mail,
+                  double fine, int freq, String blockStatus, double memberTotalPaid,
+                  double memberTotalDue, int finedCount, String paymentHistory) {
         this.name = name;
         this.profession = profession;
         this.issues = issues;
         this.contact = contact;
         this.mail = mail;
-        this.fineAmount = fineAmount;
-        this.fineFreq = fineFreq;
-        this.blockDate = blockDate;
+        this.fine = fine;
+        this.freq = freq;
+        this.blockStatus = blockStatus;
+        this.memberTotalPaid = memberTotalPaid;
+        this.memberTotalDue = memberTotalDue;
+        this.finedCount = finedCount;
+        this.paymentHistory = paymentHistory;
     }
 
+    // --- Getters and Setters ---
+    public String getName() { return name; }
+    public String getProfession() { return profession; }
+    public int getIssues() { return issues; }
+    public void setIssues(int issues) { this.issues = issues; }
+    public String getContact() { return contact; }
+    public String getMail() { return mail; }
 
+    public double getMemberTotalDue() { return memberTotalDue; }
+    public void setMemberTotalDue(double memberTotalDue) { this.memberTotalDue = memberTotalDue; }
+
+    public double getMemberTotalPaid() { return memberTotalPaid; }
+    public void setMemberTotalPaid(double memberTotalPaid) { this.memberTotalPaid = memberTotalPaid; }
+
+    public String getBlockStatus() { return blockStatus; }
+    public void setBlockStatus(String blockStatus) { this.blockStatus = blockStatus; }
+
+    public int getFinedCount() { return finedCount; }
+    public void setFinedCount(int finedCount) { this.finedCount = finedCount; }
+
+    public int getTotalReturnsCount() { return freq; } // freq কে রিটার্ন কাউন্ট হিসেবে ব্যবহার করছি
+    public void setTotalReturnsCount(int count) { this.freq = count; }
+
+    public String getPaymentHistory() { return (paymentHistory == null || paymentHistory.equals("none")) ? "" : paymentHistory; }
+    public void setPaymentHistory(String history) { this.paymentHistory = history; }
+
+    // ফাইল সেভ করার জন্য toString মেথড (১২টি কমা সেপারেটেড ভ্যালু)
+    @Override
+    public String toString() {
+        return name + "," + profession + "," + issues + "," + contact + "," + mail + "," +
+                fine + "," + freq + "," + blockStatus + "," + memberTotalPaid + "," +
+                memberTotalDue + "," + finedCount + "," + (paymentHistory.isEmpty() ? "none" : paymentHistory);
+    }
 }

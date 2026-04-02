@@ -13,6 +13,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.beans.property.SimpleStringProperty;
+import java.time.LocalDate;
 
 import java.io.*;
 import java.util.Scanner;
@@ -24,33 +26,72 @@ public class HelloController {
     private static Stage primaryStage;
 
     // --- FXML UI Elements ---
-    @FXML private Button btn_user_profile;
+    @FXML
+    private Button btn_user_profile;
 
     // Login & Signup Popup Elements
-    @FXML private TextField loginEmail, signupEmail;
-    @FXML private PasswordField loginPass, signupPass;
+    @FXML
+    private TextField loginEmail, signupEmail;
+    @FXML
+    private PasswordField loginPass, signupPass;
+    @FXML
+    private TableView<Book> inventoryTable;
+    @FXML
+    private TableView<Book> issueTable;
+    @FXML
+    private TableView<Book> returnTable;
+
 
     // Inventory & Issue Table UI
-    @FXML private TableView<Book> table;
-    @FXML private TableColumn<Book, String> book_id;
-    @FXML private TableColumn<Book, String> book_name;
-    @FXML private TableColumn<Book, String> author;
-    @FXML private TableColumn<Book, String> status;
+    @FXML
+    private TableColumn<Book, String> book_id;
+    @FXML
+    private TableColumn<Book, String> book_name;
+    @FXML
+    private TableColumn<Book, String> author;
+    @FXML
+    private TableColumn<Book, String> status;
+    @FXML
+    private TableColumn<Book, Double> bookFineColumn;
 
     // Inventory Input Fields (onAddBookClick er jonno egulo lagbe)
-    @FXML private TextField id;    // fx:id="id"
-    @FXML private TextField name;  // fx:id="name"
-    @FXML private TextField auth;  // fx:id="auth"
+    @FXML
+    private TextField id;    // fx:id="id"
+    @FXML
+    private TextField name;  // fx:id="name"
+    @FXML
+    private TextField auth;  // fx:id="auth"
 
     // Search & Issue Fields
-    @FXML private TextField txt_search111; // Book Name Field
-    @FXML private TextField txt_search11;  // Author Name Field
-    @FXML private TextField txt_search1;   // Issue Book ID Field (Enter Book Id section)
-    @FXML private DatePicker submissionDatePicker; // Submission Date Picker
+    @FXML
+    private TextField txt_search111; // Book Name Field
+    @FXML
+    private TextField txt_search11;  // Author Name Field
+    @FXML
+    private TextField txt_search1;   // Issue Book ID Field (Enter Book Id section)
+    @FXML
+    private DatePicker submissionDatePicker; // Submission Date Picker
     // Members UI
-    @FXML private TableView<Member> memberTable;
-    @FXML private TableColumn<Member, String> memname, prof, iss, cont, address;
-    @FXML private TextField nam, mail, proff, conta;
+    @FXML
+    private TableView<Member> memberTable;
+    @FXML
+    private TableColumn<Member, String> memname, prof, iss, cont, address;
+    @FXML
+    private TextField nam, mail, proff, conta;
+
+    @FXML
+    private TableView<Book> table1; // Due fines table
+    @FXML
+    private TableColumn<Book, String> book_id1, book_name1, author1, sta1;
+    @FXML
+    private TextField txt_search2; // Return Book Name (Auto-fill)
+    @FXML
+    private TextField txt_search3; // Pay Book ID
+    @FXML
+    private TextField txt_search4; // Pay Book Name Search
+    @FXML
+    private TextField txt_payamount; // Pay Amount
+    private final ObservableList<Book> fineList = FXCollections.observableArrayList();
 
     // --- Data Storage & Files ---
     private final ObservableList<Book> bookList = FXCollections.observableArrayList();
@@ -62,54 +103,129 @@ public class HelloController {
 
     @FXML
     public void initialize() {
-        // Load data from files immediately so search/issue functions have data to work with
         loadBooksFromFile();
         loadMembersFromFile();
 
-        // 1. Setup Profile Menu
         if (btn_user_profile != null) setupProfileMenu();
 
-        // 2. Setup Book Table
-        if (table != null) {
-            // These strings must match the variable names in your Book.java exactly
+
+        if (inventoryTable != null) {
+            book_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+            book_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+            author.setCellValueFactory(new PropertyValueFactory<>("author"));
+            status.setCellValueFactory(new PropertyValueFactory<>("status"));
+            inventoryTable.setItems(bookList);
+        }
+
+
+        if (issueTable != null) {
             book_id.setCellValueFactory(new PropertyValueFactory<>("id"));
             book_name.setCellValueFactory(new PropertyValueFactory<>("name"));
             author.setCellValueFactory(new PropertyValueFactory<>("author"));
             status.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-            table.setItems(bookList);
-            table.refresh();
+
+            issueTable.setItems(bookList);
         }
 
-        // 3. Setup Member Table & Pre-fill Email
+
+        if (returnTable != null) {
+
+            book_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+            book_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+            author.setCellValueFactory(new PropertyValueFactory<>("author"));
+            status.setCellValueFactory(cellData -> {
+                Book b = cellData.getValue();
+                if (b.getDueDate() == null || b.getIssuedTo().equals("none")) {
+                    return new SimpleStringProperty("Available");
+                }
+
+                long daysBetween = java.time.temporal.ChronoUnit.DAYS.between(java.time.LocalDate.now(), b.getDueDate());
+
+                if (daysBetween < 0) {
+                    return new SimpleStringProperty("Overdue by " + Math.abs(daysBetween) + " days");
+                } else {
+                    return new SimpleStringProperty(daysBetween + " days remaining");
+                }
+            });
+
+
+            returnTable.setItems(bookList.filtered(b ->
+                    b.getIssuedTo() != null && b.getIssuedTo().equalsIgnoreCase(loggedInMemberName)
+            ));
+        }
+
+
+        if (table1 != null) {
+            book_id1.setCellValueFactory(new PropertyValueFactory<>("id"));
+            book_name1.setCellValueFactory(new PropertyValueFactory<>("name"));
+            if (bookFineColumn != null) {
+                bookFineColumn.setCellValueFactory(new PropertyValueFactory<>("bookFine"));
+            }
+
+
+            table1.setItems(bookList.filtered(b ->
+                    b.getIssuedTo() != null &&
+                            b.getIssuedTo().equalsIgnoreCase(loggedInMemberName) &&
+                            b.getBookFine() > 0
+            ));
+        }
+
+
         if (memberTable != null) {
-            memname.setCellValueFactory(new PropertyValueFactory<>("name"));       // getName() খুঁজবে
-            prof.setCellValueFactory(new PropertyValueFactory<>("profession"));    // getProfession() খুঁজবে
-            iss.setCellValueFactory(new PropertyValueFactory<>("issues"));         // getIssues() খুঁজবে
-            cont.setCellValueFactory(new PropertyValueFactory<>("contact"));       // getContact() খুঁজবে
-            address.setCellValueFactory(new PropertyValueFactory<>("mail"));       // getMail() খুঁজবে
+            memname.setCellValueFactory(new PropertyValueFactory<>("name"));
+            prof.setCellValueFactory(new PropertyValueFactory<>("profession"));
+            iss.setCellValueFactory(new PropertyValueFactory<>("issues"));
+            cont.setCellValueFactory(new PropertyValueFactory<>("contact"));
+            address.setCellValueFactory(new PropertyValueFactory<>("mail"));
 
             memberTable.setItems(memberList);
+            memberTable.refresh();
         }
 
-        // Lock the email field if the user is logged in
         if (mail != null && !loggedInMemberName.equals("Guest")) {
             mail.setText(loggedInMemberName);
-            mail.setEditable(false);
-
-            // ব্লকড ইউজার চেক
-            Member me = memberList.stream()
-                    .filter(m -> m.getMail().equalsIgnoreCase(loggedInMemberName))
-                    .findFirst().orElse(null);
-
-            if (me != null && me.getFineFreq() >= 3) {
-                mail.setStyle("-fx-background-color: #ffcccc; -fx-text-fill: red;");
-                showAlert(Alert.AlertType.ERROR, "Account Blocked",
-                        "You have been fined 3+ times. Access restricted for a week.");
-            } else {
-                mail.setStyle("-fx-opacity: 0.8; -fx-background-color: #d3d3d3; -fx-text-fill: black;");
-            }
         }
+
+        setupListeners();
+    }
+
+    private void setupListeners() {
+
+        if (txt_search1 != null) {
+            txt_search1.textProperty().addListener((obs, old, newValue) -> {
+                Book b = bookList.stream()
+                        .filter(book -> book.getId().equals(newValue) && book.getIssuedTo().equals(loggedInMemberName))
+                        .findFirst().orElse(null);
+                if (txt_search2 != null) txt_search2.setText(b != null ? b.getName() : "");
+            });
+        }
+
+
+        if (txt_search2 != null) {
+            txt_search2.textProperty().addListener((obs, old, newValue) -> {
+                Book b = bookList.stream()
+                        .filter(book -> book.getName().equalsIgnoreCase(newValue) && book.getIssuedTo().equals(loggedInMemberName))
+                        .findFirst().orElse(null);
+                if (txt_search1 != null && b != null) txt_search1.setText(b.getId());
+            });
+        }
+
+
+        if (txt_search4 != null) {
+            txt_search4.textProperty().addListener((obs, old, newValue) -> {
+
+                Book b = bookList.stream()
+                        .filter(book -> book.getName().equalsIgnoreCase(newValue) &&
+                                book.getIssuedTo().equals("none") &&
+                                book.getBookFine() > 0)
+                        .findFirst().orElse(null);
+                if (txt_search3 != null) txt_search3.setText(b != null ? b.getId() : "");
+            });
+        }
+    }
+    public double getGlobalTotalDue() {
+        return memberList.stream().mapToDouble(Member::getMemberTotalDue).sum();
     }
 
     // --- 1. AUTHENTICATION & REGISTRATION ---
@@ -132,7 +248,7 @@ public class HelloController {
 
         if (email.isEmpty() || pass.isEmpty()) return;
 
-        // Check if user already exists in user_data.txt to prevent duplicate accounts
+
         if (isUserRegistered(email)) {
             showAlert(Alert.AlertType.ERROR, "Registration Error", "This Gmail is already registered!");
             return;
@@ -159,7 +275,9 @@ public class HelloController {
                         break;
                     }
                 }
-            } catch (FileNotFoundException e) { e.printStackTrace(); }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
 
         if (authenticated) {
@@ -171,7 +289,6 @@ public class HelloController {
         }
     }
 
-    // --- 2. MEMBERSHIP LOGIC (ONE ID PER MEMBER) ---
 
     @FXML
     public void onBecomeMemberClick() {
@@ -182,7 +299,7 @@ public class HelloController {
             return;
         }
 
-        // Refresh list and check for existing membership
+
         loadMembersFromFile();
         boolean alreadyExists = memberList.stream()
                 .anyMatch(m -> m.getMail().equalsIgnoreCase(currentEmail));
@@ -196,13 +313,15 @@ public class HelloController {
             return;
         }
 
-        // Adding 8 arguments: name, prof, issues(0), contact, mail, fine(0.0), freq(0), block("none")
-        Member newMember = new Member(nam.getText(), proff.getText(), 0, conta.getText(), currentEmail, 0.0, 0, "none");
+
+        Member newMember = new Member(nam.getText(), proff.getText(), 0, conta.getText(), currentEmail, 0.0, 0, "none", 0.0, 0.0, 0, "none");
         memberList.add(newMember);
         saveToFile(MEMBER_FILE, newMember.toString());
 
         showAlert(Alert.AlertType.INFORMATION, "Welcome", "Membership profile created!");
-        nam.clear(); proff.clear(); conta.clear();
+        nam.clear();
+        proff.clear();
+        conta.clear();
     }
 
     // --- 3. NAVIGATION & UI ---
@@ -212,14 +331,18 @@ public class HelloController {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateMainScene(String fxmlFile) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
             if (primaryStage != null) primaryStage.setScene(new Scene(root));
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void openPopup(String fxmlFile, String title) {
@@ -231,10 +354,13 @@ public class HelloController {
             popupStage.setTitle(title);
             popupStage.setScene(new Scene(root));
             popupStage.show();
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    @FXML public void closePopup(ActionEvent event) {
+    @FXML
+    public void closePopup(ActionEvent event) {
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
@@ -251,11 +377,30 @@ public class HelloController {
         btn_user_profile.setOnAction(e -> menu.show(btn_user_profile, Side.BOTTOM, 0, 0));
     }
 
-    @FXML public void onInventoryButtonClick(ActionEvent event) { changeScene(event, "inventory.fxml"); }
-    @FXML public void onDashboardButtonClick(ActionEvent event) { changeScene(event, "hello-view.fxml"); }
-    @FXML public void onMembersButtonClick(ActionEvent event) { changeScene(event, "members.fxml"); }
-    @FXML public void onIssueButtonClick(ActionEvent event) { changeScene(event, "issue.fxml"); }
-    @FXML public void onReturnButtonClick(ActionEvent event) { changeScene(event, "return.fxml"); }
+    @FXML
+    public void onInventoryButtonClick(ActionEvent event) {
+        changeScene(event, "inventory.fxml");
+    }
+
+    @FXML
+    public void onDashboardButtonClick(ActionEvent event) {
+        changeScene(event, "hello-view.fxml");
+    }
+
+    @FXML
+    public void onMembersButtonClick(ActionEvent event) {
+        changeScene(event, "members.fxml");
+    }
+
+    @FXML
+    public void onIssueButtonClick(ActionEvent event) {
+        changeScene(event, "issue.fxml");
+    }
+    @FXML
+    public void onReturnButtonClick(ActionEvent event) {
+        changeScene(event, "return.fxml");
+        refreshReturnTables();
+    }
 
     // --- 4. DATA PERSISTENCE ---
 
@@ -263,7 +408,9 @@ public class HelloController {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
             writer.write(data);
             writer.newLine();
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean isUserRegistered(String email) {
@@ -273,7 +420,8 @@ public class HelloController {
             while (sc.hasNextLine()) {
                 if (sc.nextLine().split(",")[0].equalsIgnoreCase(email)) return true;
             }
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
         return false;
     }
 
@@ -283,13 +431,25 @@ public class HelloController {
         bookList.clear();
         try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
-                String[] p = sc.nextLine().split(",");
-                // Reads 5 fields: ID, Name, Author, Status, TotalIssues
-                if (p.length == 5) {
-                    bookList.add(new Book(p[0], p[1], p[2], p[3], Integer.parseInt(p[4])));
+                String line = sc.nextLine();
+                String[] p = line.split(",");
+                if (p.length == 9) {
+
+                    java.time.LocalDate issDate = p[5].equals("none") ? null : java.time.LocalDate.parse(p[5]);
+                    java.time.LocalDate dDate = p[6].equals("none") ? null : java.time.LocalDate.parse(p[6]);
+
+                    bookList.add(new Book(
+                            p[0], p[1], p[2], p[3],
+                            Integer.parseInt(p[4]),
+                            issDate, dDate,
+                            Double.parseDouble(p[7]),
+                            p[8]
+                    ));
                 }
             }
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadMembersFromFile() {
@@ -298,22 +458,23 @@ public class HelloController {
         memberList.clear();
         try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                String[] p = line.split(",");
-                if (p.length == 8) {
-                    memberList.add(new Member(p[0], p[1], Integer.parseInt(p[2]),
-                            p[3], p[4], Double.parseDouble(p[5]), Integer.parseInt(p[6]), p[7]));
+                String[] p = sc.nextLine().split(",");
+                if (p.length == 12) {
+                    memberList.add(new Member(p[0], p[1], Integer.parseInt(p[2]), p[3], p[4], Double.parseDouble(p[5]),
+                            Integer.parseInt(p[6]), p[7], Double.parseDouble(p[8]), Double.parseDouble(p[9]),
+                            Integer.parseInt(p[10]), p[11]));
                 }
             }
-            System.out.println("Total members loaded: " + memberList.size()); // চেক করার জন্য
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void onAddBookClick() {
-        // Null check jate app crash na kore
-        if (id == null || name == null || auth == null) {
-            System.out.println("Error: Inventory TextFields are not linked in FXML!");
+
+        if (inventoryTable == null || id == null || name == null || auth == null) {
+            System.out.println("Error: Inventory Elements are not linked in FXML!");
             return;
         }
 
@@ -322,18 +483,31 @@ public class HelloController {
             return;
         }
 
-        // Book object toiri kora (ID, Name, Author, Status, TotalIssues)
-        Book b = new Book(id.getText(), name.getText(), auth.getText(), "Available", 0);
+        Book b = new Book(
+                id.getText(),
+                name.getText(),
+                auth.getText(),
+                "Available",
+                0,
+                null, // Issue Date
+                null, // Due Date
+                0.0,  // Fine
+                "none" // IssuedTo
+        );
 
         bookList.add(b);
-        saveToFile(BOOK_FILE, b.toString());
 
-        // Field gulo porishkar kora
+
+        saveAllData();
+
+
         id.clear();
         name.clear();
         auth.clear();
 
-        if (table != null) table.refresh();
+
+        inventoryTable.refresh();
+
         showAlert(Alert.AlertType.INFORMATION, "Success", "Book added successfully!");
     }
 
@@ -358,7 +532,9 @@ public class HelloController {
             Stage stage = new Stage();
             stage.setScene(new Scene(cardRoot));
             stage.show();
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showAlert(Alert.AlertType type, String title, String content) {
@@ -368,24 +544,46 @@ public class HelloController {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
     // --- SORTING ---
     // --- SORTING LOGIC ---
+    // --- SORTING LOGIC (REPLACED) ---
     @FXML
     public void onSortAuthor(ActionEvent event) {
-        table.setItems(bookList); // ফিল্টার থাকলে ফিল্টার রিসেট করে সর্ট হবে
+
         bookList.sort((b1, b2) -> b1.getAuthor().compareToIgnoreCase(b2.getAuthor()));
+
+
+        if (inventoryTable != null) inventoryTable.setItems(bookList);
+        if (issueTable != null) issueTable.setItems(bookList);
+
+        refreshAllTables();
     }
 
     @FXML
     public void onSortAlpha(ActionEvent event) {
-        table.setItems(bookList);
         bookList.sort((b1, b2) -> b1.getName().compareToIgnoreCase(b2.getName()));
+
+
+        if (inventoryTable != null) inventoryTable.setItems(bookList);
+        if (issueTable != null) issueTable.setItems(bookList);
+
+        refreshAllTables();
     }
 
     @FXML
     public void onSortAvailability(ActionEvent event) {
-        table.setItems(bookList);
         bookList.sort((b1, b2) -> b1.getStatus().compareToIgnoreCase(b2.getStatus()));
+
+        if (inventoryTable != null) inventoryTable.setItems(bookList);
+        if (issueTable != null) issueTable.setItems(bookList);
+
+        refreshAllTables();
+    }
+
+    private void refreshAllTables() {
+        if (inventoryTable != null) inventoryTable.refresh();
+        if (issueTable != null) issueTable.refresh();
     }
 
     // --- SEARCH & POPUP --
@@ -394,27 +592,38 @@ public class HelloController {
         String nameInput = txt_search111.getText().trim().toLowerCase();
         String authorInput = txt_search11.getText().trim().toLowerCase();
 
-        // ১. যদি শুধু লেখকের নাম দেওয়া হয়: টেবিল ফিল্টার হবে
-        if (nameInput.isEmpty() && !authorInput.isEmpty()) {
-            ObservableList<Book> filteredList = bookList.filtered(b ->
-                    b.getAuthor().toLowerCase().contains(authorInput));
-            table.setItems(filteredList);
-            if (filteredList.isEmpty()) showAlert(Alert.AlertType.INFORMATION, "Search", "No books found for this author.");
+
+        if (nameInput.isEmpty() && authorInput.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Input Error", "Please enter Book Name or Author Name.");
             return;
         }
 
-        // ২. যদি বইয়ের নাম (অথবা নাম + লেখক) দেওয়া হয়: পপআপ আসবে
-        Book foundBook = bookList.stream()
-                .filter(b -> (b.getName().toLowerCase().contains(nameInput)) &&
-                        (authorInput.isEmpty() || b.getAuthor().toLowerCase().contains(authorInput)))
-                .findFirst().orElse(null);
 
-        if (foundBook != null) {
-            showBookCardPopup(foundBook);
-            // পপআপ আসার সাথে সাথে Issue Section-এর Book ID ফিল্ডে আইডি সেট হবে
-            if (txt_search1 != null) txt_search1.setText(foundBook.getId());
-        } else {
-            showAlert(Alert.AlertType.ERROR, "Invalid Book", "Invalid or unregistered book name.");
+        ObservableList<Book> filteredList = bookList.filtered(b ->
+                (nameInput.isEmpty() || b.getName().toLowerCase().contains(nameInput)) &&
+                        (authorInput.isEmpty() || b.getAuthor().toLowerCase().contains(authorInput))
+        );
+
+
+        if (inventoryTable != null) {
+            inventoryTable.setItems(filteredList);
+        }
+
+        if (issueTable != null) {
+            issueTable.setItems(filteredList);
+        }
+
+
+        if (!nameInput.isEmpty()) {
+            Book foundBook = filteredList.stream().findFirst().orElse(null);
+            if (foundBook != null) {
+                showBookCardPopup(foundBook);
+                if (txt_search1 != null) txt_search1.setText(foundBook.getId());
+            }
+        }
+
+        if (filteredList.isEmpty()) {
+            showAlert(Alert.AlertType.INFORMATION, "Search", "No books found matching your search.");
         }
     }
 
@@ -430,20 +639,24 @@ public class HelloController {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // --- EXTENDED ISSUE LOGIC ---
     @FXML
     public void handleIssueBook(ActionEvent event) {
         String bId = txt_search1.getText().trim();
+        java.time.LocalDate selectedDate = submissionDatePicker.getValue();
 
-        // তারিখ চেক করা
-        if (bId.isEmpty() || submissionDatePicker.getValue() == null) {
+        if (bId.isEmpty() || selectedDate == null) {
             showAlert(Alert.AlertType.WARNING, "Incomplete Fields", "Please enter Book ID and select Submission Date.");
             return;
         }
 
+
+        loadMembersFromFile();
         Member me = memberList.stream()
                 .filter(m -> m.getMail().equalsIgnoreCase(loggedInMemberName))
                 .findFirst().orElse(null);
@@ -453,97 +666,195 @@ public class HelloController {
             return;
         }
 
-        // --- লজিক চেক ---
-        // ১. বকেয়া জরিমানা চেক
-        if (me.getFineAmount() > 1000) {
-            showAlert(Alert.AlertType.ERROR, "Issue Denied", "Due exceeds 1000 TK. Pay dues first!");
-            return;
-        }
 
-        // ২. ব্লক চেক (৩ বারের বেশি জরিমানা হলে)
-        if (me.getFineFreq() >= 3) {
-            showAlert(Alert.AlertType.ERROR, "User Blocked", "You were fined " + me.getFineFreq() + " times. Access blocked for a week!");
-            return;
-        }
-
-        // ৩. বইয়ের লিমিট চেক (সর্বোচ্চ ৩টি)
         if (me.getIssues() >= 3) {
-            showAlert(Alert.AlertType.ERROR, "Limit Exceeded", "You can issue at most 3 books at a time.");
+            showAlert(Alert.AlertType.ERROR, "Limit Exceeded", "You already have 3 books issued. Return one to issue another!");
             return;
         }
+
+        if (me.getMemberTotalDue() > 1000) {
+            showAlert(Alert.AlertType.ERROR, "Denied", "Total Due > 1000 TK. Pay dues first!");
+            return;
+        }
+
 
         Book b = bookList.stream().filter(book -> book.getId().equals(bId)).findFirst().orElse(null);
 
         if (b != null && b.getStatus().equalsIgnoreCase("Available")) {
+
             b.setStatus("Issued");
-            b.incrementTotalIssues(); // বইয়ের টোটাল ইস্যু বৃদ্ধি
-            me.setIssues(me.getIssues() + 1); // ইউজারের টোটাল ইস্যু বৃদ্ধি
+            b.setIssuedTo(loggedInMemberName);
+            b.setIssueDate(java.time.LocalDate.now());
+            b.setDueDate(selectedDate);
+            b.setTotalIssues(b.getTotalIssues() + 1);
+
+
+            me.setIssues(me.getIssues() + 1);
+
 
             saveAllData();
-            table.refresh();
-            showAlert(Alert.AlertType.INFORMATION, "Success", "Book Issued! Time count started.");
+
+
+            if (inventoryTable != null) inventoryTable.refresh();
+            if (issueTable != null) issueTable.refresh();
+            if (returnTable != null) {
+                returnTable.setItems(bookList.filtered(book ->
+                        book.getIssuedTo().equalsIgnoreCase(loggedInMemberName) && book.getStatus().equalsIgnoreCase("Issued")));
+            }
+
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Book Issued successfully! Current Issues: " + me.getIssues());
         } else {
-            showAlert(Alert.AlertType.ERROR, "Unavailable", "Invalid Book ID or Book is already Issued.");
+            showAlert(Alert.AlertType.ERROR, "Unavailable", "Invalid ID or Book already issued.");
         }
     }
 
     private void saveAllData() {
-        // ওভাররাইট মোডে সেভ করা হচ্ছে যাতে পুরনো ডাটা মুছে নতুন স্ট্যাটাস আপডেট হয়
+
         try (PrintWriter bw = new PrintWriter(new FileWriter(BOOK_FILE, false))) {
             for (Book b : bookList) bw.println(b.toString());
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try (PrintWriter mw = new PrintWriter(new FileWriter(MEMBER_FILE, false))) {
             for (Member m : memberList) mw.println(m.toString());
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
     @FXML
     public void handleReturnBook(ActionEvent event) {
-        String bId = txt_search1.getText().trim(); // Return section-এও Book ID ইনপুট নিতে হবে
+        String bId = txt_search1.getText().trim();
 
-        if (bId.isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Error", "Please enter the Book ID to return.");
-            return;
-        }
+        Book b = bookList.stream()
+                .filter(book -> book.getId().equals(bId))
+                .findFirst()
+                .orElse(null);
 
-        // ১. বই খুঁজে বের করা
-        Book b = bookList.stream().filter(book -> book.getId().equals(bId)).findFirst().orElse(null);
-        if (b == null || !b.getStatus().equalsIgnoreCase("Issued")) {
-            showAlert(Alert.AlertType.ERROR, "Error", "This book is not currently issued.");
-            return;
-        }
+        if (b != null && b.getIssuedTo().equalsIgnoreCase(loggedInMemberName) && b.getStatus().equalsIgnoreCase("Issued")) {
 
-        // ২. মেম্বার খুঁজে বের করা (যেহেতু লগইন করা ইউজার ফেরত দিচ্ছে)
-        Member me = memberList.stream()
-                .filter(m -> m.getMail().equalsIgnoreCase(loggedInMemberName))
-                .findFirst().orElse(null);
 
-        if (me != null) {
-            // ৩. জরিমানা ক্যালকুলেশন লজিক (উদাহরণস্বরূপ ৭ দিন পার হলে ১০০ টাকা)
-            // বাস্তবে এখানে Submission Date এবং বর্তমান তারিখের পার্থক্য বের করতে হবে
-            java.time.LocalDate today = java.time.LocalDate.now();
-            java.time.LocalDate dueDate = submissionDatePicker.getValue(); // ইস্যু করার সময় সেট করা ডেট
+            Member me = memberList.stream()
+                    .filter(m -> m.getMail().equalsIgnoreCase(loggedInMemberName))
+                    .findFirst().orElse(null);
 
-            if (dueDate != null && today.isAfter(dueDate)) {
-                long daysLate = java.time.temporal.ChronoUnit.DAYS.between(dueDate, today);
-                int weeksLate = (int) Math.ceil(daysLate / 7.0);
-                double fine = weeksLate * 100.0;
+            LocalDate today = LocalDate.now();
+            double fine = 0;
 
-                me.setFineAmount(me.getFineAmount() + fine);
-                me.setFineFreq(me.getFineFreq() + 1); // জরিমানা খাওয়ার ফ্রিকুয়েন্সি ১ বাড়ানো হলো
 
-                showAlert(Alert.AlertType.INFORMATION, "Fine Applied",
-                        "You are " + daysLate + " days late. Fine: " + fine + " TK added to your account.");
+            if (b.getDueDate() != null && today.isAfter(b.getDueDate())) {
+                long daysLate = java.time.temporal.ChronoUnit.DAYS.between(b.getDueDate(), today);
+                fine = daysLate * 50.0;
+                b.setBookFine(fine);
+                if (me != null) {
+                    me.setMemberTotalDue(me.getMemberTotalDue() + fine);
+                }
+            } else {
+                b.setBookFine(0.0);
             }
 
-            // ৪. স্ট্যাটাস আপডেট
+
+            if (me != null && me.getIssues() > 0) {
+                me.setIssues(me.getIssues() - 1);
+            }
+
+
             b.setStatus("Available");
-            me.setIssues(Math.max(0, me.getIssues() - 1)); // ইউজারের একটি বই কমলো
+            b.setIssuedTo("none");
+            b.setIssueDate(null);
+            b.setDueDate(null);
 
             saveAllData();
-            table.refresh();
-            showAlert(Alert.AlertType.INFORMATION, "Success", "Book returned successfully!");
+            refreshReturnTables();
+
+            txt_search1.clear();
+            txt_search2.clear();
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Book Returned! Now you can issue another book.");
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Error", "Invalid Book ID or not issued to you!");
         }
     }
+    private void refreshReturnTables() {
+        if (returnTable != null) {
+            // Upore shudhu jegulo ekhon hate ache (Issued status)
+            returnTable.setItems(bookList.filtered(book ->
+                    book.getIssuedTo().equalsIgnoreCase(loggedInMemberName) &&
+                            book.getStatus().equalsIgnoreCase("Issued")));
+        }
+
+        if (table1 != null) {
+
+            table1.setItems(bookList.filtered(book ->
+                    book.getStatus().equalsIgnoreCase("Available") &&
+                            book.getBookFine() > 0));
+        }
+    }
+
+    @FXML
+    public void handlePayFine(ActionEvent event) {
+        String enteredId = txt_search3.getText().trim();
+        String amountStr = txt_payamount.getText().trim();
+
+
+        if (enteredId.isEmpty() || amountStr.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Input Error", "Please enter Book ID and Amount.");
+            return;
+        }
+
+
+        Book b = bookList.stream()
+                .filter(book -> book.getId().equals(enteredId) && book.getBookFine() > 0)
+                .findFirst().orElse(null);
+
+        if (b == null) {
+            showAlert(Alert.AlertType.ERROR, "Invalid ID", "No pending fine found for this Book ID.");
+            return;
+        }
+
+        try {
+            double payAmount = Double.parseDouble(amountStr);
+            Member me = memberList.stream()
+                    .filter(m -> m.getMail().equalsIgnoreCase(loggedInMemberName))
+                    .findFirst().orElse(null);
+
+            if (me != null) {
+
+                if (payAmount <= 0 || payAmount > b.getBookFine()) {
+                    showAlert(Alert.AlertType.ERROR, "Invalid Amount", "Amount must be between 1 and " + b.getBookFine());
+                    return;
+                }
+
+
+                b.setBookFine(b.getBookFine() - payAmount);
+                me.setMemberTotalPaid(me.getMemberTotalPaid() + payAmount);
+                me.setMemberTotalDue(Math.max(0, me.getMemberTotalDue() - payAmount));
+
+
+                String historyEntry = java.time.LocalDate.now() + ": Paid " + payAmount + " TK for Book ID " + b.getId();
+
+                me.setPaymentHistory(me.getPaymentHistory() + " | " + historyEntry);
+
+
+                saveAllData();
+
+
+                if (table1 != null) {
+
+                    table1.setItems(bookList.filtered(book -> book.getBookFine() > 0));
+                }
+                if (memberTable != null) memberTable.refresh();
+
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Payment of " + payAmount + " TK successful!");
+
+
+                txt_search3.clear();
+                txt_payamount.clear();
+            }
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Input Error", "Please enter a valid numeric amount.");
+        }
+    }
+
 }
 
