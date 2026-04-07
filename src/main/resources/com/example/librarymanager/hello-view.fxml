@@ -364,11 +364,6 @@
             </Pane>
             <Pane fx:id="pane_one21" layoutX="22.0" layoutY="449.0" prefHeight="43.0" prefWidth="258.0" styleClass="pane_one" stylesheets="@style.css">
                <children>
-                  <Label layoutX="15.0" layoutY="97.0" text="My issues:" textFill="#ccc9c9">
-                     <font>
-                        <Font name="Century Gothic" size="11.0" />
-                     </font>
-                  </Label>
                   <Pane fx:id="most_inner_pane11" layoutX="201.0" prefHeight="43.0" prefWidth="43.0" styleClass="most_inner_pane" stylesheets="@style.css">
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
@@ -397,11 +392,6 @@
             </Pane>
             <Pane fx:id="pane_one211" layoutX="22.0" layoutY="499.0" prefHeight="43.0" prefWidth="258.0" styleClass="pane_one" stylesheets="@style.css">
                <children>
-                  <Label layoutX="15.0" layoutY="97.0" text="My issues:" textFill="#ccc9c9">
-                     <font>
-                        <Font name="Century Gothic" size="11.0" />
-                     </font>
-                  </Label>
                   <Pane fx:id="most_inner_pane111" layoutX="201.0" prefHeight="43.0" prefWidth="43.0" styleClass="most_inner_pane" stylesheets="@style.css">
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
@@ -435,7 +425,7 @@
             </Label>
             <Pane layoutX="299.0" layoutY="397.0" prefHeight="140.0" prefWidth="384.0">
                <children>
-                  <Label layoutX="7.0" layoutY="14.0" text="1. Borrowed books cannot be harmed.">
+                  <Label layoutX="7.0" layoutY="14.0" text="1. Books with unpaid fines cannot be borrowed.">
                      <font>
                         <Font name="Century Gothic Italic" size="15.0" />
                      </font>

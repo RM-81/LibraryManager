@@ -522,26 +522,26 @@ public class HelloController {
     }
 
     private void loadBooksFromFile() {
-        File file = new File(BOOK_FILE);
-        if (!file.exists()) return;
         bookList.clear();
-        try (Scanner sc = new Scanner(file)) {
-            while (sc.hasNextLine()) {
-                // Inside your while(scanner.hasNextLine()) loop:
-                String line = sc.nextLine();
+        try (Scanner scanner = new Scanner(new File(BOOK_FILE))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
                 String[] parts = line.split(",");
-                if (parts.length >= 9) {
-                    String id = parts[0];
-                    String name = parts[1];
-                    String author = parts[2];
-                    String status = parts[3];
-                    int issues = Integer.parseInt(parts[4]);
-                    LocalDate iDate = parts[5].equals("none") ? null : LocalDate.parse(parts[5]);
-                    LocalDate dDate = parts[6].equals("none") ? null : LocalDate.parse(parts[6]);
-                    double fine = Double.parseDouble(parts[7]);
-                    String user = parts[8];
 
-                    bookList.add(new Book(id, name, author, status, issues, iDate, dDate, fine, user));
+                // It must handle exactly 9 parts to match your Book constructor
+                if (parts.length == 9) {
+                    Book book = new Book(
+                            parts[0], // ID
+                            parts[1], // Name
+                            parts[2], // Author
+                            parts[3], // Status
+                            Integer.parseInt(parts[4]), // Total Issues
+                            parts[5].equals("none") ? null : LocalDate.parse(parts[5]), // Issue Date
+                            parts[6].equals("none") ? null : LocalDate.parse(parts[6]), // Due Date
+                            Double.parseDouble(parts[7]), // Fine (CRITICAL FIELD)
+                            parts[8]  // Issued To
+                    );
+                    bookList.add(book);
                 }
             }
         } catch (Exception e) {
