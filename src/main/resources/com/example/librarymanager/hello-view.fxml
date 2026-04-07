@@ -180,7 +180,7 @@
                         <Font name="Century Gothic" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="14.0" text="510" textFill="#fffdfd">
+                  <Label fx:id="total_issues" layoutX="14.0" layoutY="14.0" text="0" textFill="#fffdfd">
                      <font>
                         <Font name="Century Gothic Bold" size="25.0" />
                      </font>
@@ -190,7 +190,7 @@
                         <Font name="Century Gothic" size="11.0" />
                      </font>
                   </Label>
-                  <Label layoutX="66.0" layoutY="97.0" text="15" textFill="#fffdfd">
+                  <Label fx:id="my_issues" layoutX="66.0" layoutY="97.0" text="0" textFill="#fffdfd">
                      <font>
                         <Font name="Century Gothic" size="11.0" />
                      </font>
@@ -215,7 +215,7 @@
                         <Font name="Century Gothic" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="14.0" text="200">
+                  <Label fx:id="total_returns" layoutX="14.0" layoutY="14.0" text="0">
                      <font>
                         <Font name="Century Gothic Bold" size="25.0" />
                      </font>
@@ -225,7 +225,7 @@
                         <Font name="Century Gothic" size="11.0" />
                      </font>
                   </Label>
-                  <Label layoutX="72.0" layoutY="97.0" text="15">
+                  <Label fx:id="my_returns" layoutX="72.0" layoutY="97.0" text="0">
                      <font>
                         <Font name="Century Gothic" size="11.0" />
                      </font>
@@ -244,7 +244,7 @@
                         <Font name="Century Gothic" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="14.0" text="200" textFill="#fffdfd">
+                  <Label fx:id="total_donations" layoutX="14.0" layoutY="14.0" text="0" textFill="#fffdfd">
                      <font>
                         <Font name="Century Gothic Bold" size="25.0" />
                      </font>
@@ -263,7 +263,7 @@
                         <Font name="Century Gothic" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="14.0" text="200" textFill="#fffdfd">
+                  <Label fx:id="total_dues" layoutX="14.0" layoutY="14.0" text="0" textFill="#fffdfd">
                      <font>
                         <Font name="Century Gothic Bold" size="25.0" />
                      </font>
@@ -273,7 +273,7 @@
                         <Font name="Century Gothic" size="11.0" />
                      </font>
                   </Label>
-                  <Label layoutX="72.0" layoutY="97.0" text="190" textFill="#fffdfd">
+                  <Label fx:id="my_dues" layoutX="72.0" layoutY="97.0" text="0" textFill="#fffdfd">
                      <font>
                         <Font name="Century Gothic" size="11.0" />
                      </font>
@@ -293,7 +293,7 @@
                         <Font name="Century Gothic" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="14.0" text="150">
+                  <Label fx:id="total_fines" layoutX="14.0" layoutY="14.0" text="0">
                      <font>
                         <Font name="Century Gothic Bold" size="25.0" />
                      </font>
@@ -303,7 +303,7 @@
                         <Font name="Century Gothic" size="11.0" />
                      </font>
                   </Label>
-                  <Label layoutX="67.0" layoutY="97.0" text="5">
+                  <Label fx:id="my_fines" layoutX="67.0" layoutY="97.0" text="0">
                      <font>
                         <Font name="Century Gothic" size="11.0" />
                      </font>
