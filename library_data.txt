@@ -1,4 +1,6 @@
-sad,vgszdgasg,gsgsgs,Available,1,none,none,100.0,none
+56,vfhg,ghj,Available,0,none,none,0.0,none
+sad,vgszdgasg,gsgsgs,Available,1,none,none,0.0,none
 asg,sga,hga,Available,0,none,none,0.0,none
-A23,deyal,humayun ahmed,Issued,7,2026-03-07,2026-03-05,100.0,minan2116@gmail.com
-B24,Mom,humayun ahmed,Issued,4,2026-03-07,2026-03-05,100.0,s
+B24,Mom,humayun ahmed,Available,5,none,none,0.0,none
+A23,deyal,humayun ahmed,Issued,7,2026-03-07,2026-03-05,0.0,minan2116@gmail.com
+A3,m,m,Available,1,none,none,0.0,none
