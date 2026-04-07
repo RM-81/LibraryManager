@@ -1,5 +1,6 @@
-2,q,er,Issued,9,2026-04-07,2026-04-07,0.0,p
-W,23,M,Available,5,none,none,0.0,none
+2,q,er,Available,7,none,none,0.0,none
+W,23,M,Issued,1,2026-04-08,2026-04-15,0.0,p
 23,M,M,Available,3,none,none,0.0,none
-2,MS,MS,Available,0,none,none,0.0,none
-3,p,s,Available,3,none,none,0.0,none
+2w,MS,MS,Available,0,none,none,0.0,none
+3,p,s,Available,4,none,none,0.0,none
+a,a,a,Available,0,none,none,0.0,none

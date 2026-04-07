@@ -95,6 +95,16 @@ public class HelloController {
     private TextField txt_payamount; // Pay Amount
     private final ObservableList<Book> fineList = FXCollections.observableArrayList();
 
+    // Labels for System-wide and Personal Stats [cite: 1, 2]
+    @FXML private Label total_issues, my_issues;
+    @FXML private Label total_returns, my_returns;
+    @FXML private Label total_fines, my_fines;
+    @FXML private Label total_donations; // Total books added [cite: 1, 2]
+    @FXML private Label total_dues, my_dues;
+
+    // Progress Bars [cite: 1, 2]
+    @FXML private ProgressBar issue_progress, return_progress, fine_progress, due_progress;
+
     // --- Data Storage & Files ---
     private final ObservableList<Book> bookList = FXCollections.observableArrayList();
     private final ObservableList<Member> memberList = FXCollections.observableArrayList();
@@ -107,6 +117,7 @@ public class HelloController {
     public void initialize() {
         loadBooksFromFile();
         loadMembersFromFile();
+        updateDashboard();
 
         if (btn_user_profile != null) setupProfileMenu();
 
@@ -216,6 +227,7 @@ public class HelloController {
         }
 
 
+
         if (memberTable != null) {
             memname.setCellValueFactory(new PropertyValueFactory<>("name"));
             prof.setCellValueFactory(new PropertyValueFactory<>("profession"));
@@ -232,6 +244,47 @@ public class HelloController {
         }
 
         setupListeners();
+    }
+
+    private void updateDashboard() {
+        if (total_issues == null) return;
+
+        Member me = memberList.stream()
+                .filter(m -> m.getMail().equalsIgnoreCase(loggedInMemberName))
+                .findFirst().orElse(null);
+
+        // 1. ISSUES: Total system-wide issues vs My lifetime issues
+        int sysIss = bookList.stream().mapToInt(Book::getTotalIssues).sum();
+        int myIss = (me != null) ? me.getIssues() : 0;
+        total_issues.setText(String.valueOf(sysIss));
+        my_issues.setText(" " + myIss);
+        issue_progress.setProgress(sysIss == 0 ? 0 : (double) myIss / sysIss);
+
+        // 2. DUES & PAID: Personal only (Total Due by me vs Amount Paid by me)
+        double myDue = (me != null) ? me.getMemberTotalDue() : 0.0;
+        double myPaid = (me != null) ? me.getMemberTotalPaid() : 0.0;
+        total_dues.setText(String.format("%.0f", myDue));
+        my_dues.setText(" " + (int)myPaid);
+        // Progress: Ratio of how much of your total debt you have cleared
+        double totalDebtEver = myDue + myPaid;
+        due_progress.setProgress(totalDebtEver == 0 ? 0 :(double) myPaid / totalDebtEver);
+
+        // 3. FINES: How many times fine occurred for ALL vs how many times for ME
+        int sysFineCount = memberList.stream().mapToInt(Member::getFinedCount).sum();
+        int myFineCount = (me != null) ? me.getFinedCount() : 0;
+        total_fines.setText(String.valueOf(sysFineCount));
+        my_fines.setText(" " + myFineCount);
+        fine_progress.setProgress(sysFineCount == 0 ? 0 : (double) myFineCount / sysFineCount);
+
+        // 4. RETURNS: Lifetime System vs Lifetime Me
+        int sysRet = memberList.stream().mapToInt(Member::getTotalReturnsCount).sum();
+        int myRet = (me != null) ? me.getTotalReturnsCount() : 0;
+        total_returns.setText(String.valueOf(sysRet));
+        my_returns.setText(" " + myRet);
+        return_progress.setProgress(sysRet == 0 ? 0 : (double) myRet / sysRet);
+
+        // 5. DONATIONS: Total books in system
+        total_donations.setText(String.valueOf(bookList.size()));
     }
 
     private void setupListeners() {
@@ -323,7 +376,8 @@ public class HelloController {
         }
 
         if (authenticated) {
-            loggedInMemberName = email;
+            loggedInMemberName = loginEmail.getText();;
+            updateDashboard();
             closePopup(event);
             updateMainScene("hello-view.fxml");
         } else {
@@ -542,6 +596,7 @@ public class HelloController {
 
 
         saveAllData();
+        updateDashboard();
 
 
         id.clear();
@@ -710,8 +765,15 @@ public class HelloController {
         }
 
 
-        if (me.getIssues() >= 3) {
-            showAlert(Alert.AlertType.ERROR, "Limit Exceeded", "You already have 3 books issued. Return one to issue another!");
+        // Calculate active issues by filtering the current book list
+        long activeIssuesCount = bookList.stream()
+                .filter(book -> book.getIssuedTo() != null &&
+                        book.getIssuedTo().equalsIgnoreCase(loggedInMemberName) &&
+                        book.getStatus().equalsIgnoreCase("Issued"))
+                .count();
+
+        if (activeIssuesCount >= 3) {
+            showAlert(Alert.AlertType.ERROR, "Limit Exceeded", "You currently have " + activeIssuesCount + " books out. Return one to issue another!");
             return;
         }
 
@@ -726,16 +788,17 @@ public class HelloController {
         if (b != null && b.getStatus().equalsIgnoreCase("Available")) {
 
             b.setStatus("Issued");
-            b.setIssuedTo(loggedInMemberName);
-            b.setIssueDate(java.time.LocalDate.now());
-            b.setDueDate(selectedDate);
-            b.setTotalIssues(b.getTotalIssues() + 1);
+            b.setIssuedTo(me.getMail());
+            b.setIssueDate(LocalDate.now());
+            b.setDueDate(submissionDatePicker.getValue());
 
-
-            me.setIssues(me.getIssues() + 1);
-
+// --- CUMULATIVE UPDATE ---
+            b.incrementTotalIssues();      // Book's lifetime count
+            me.setIssues(me.getIssues() + 1); // Member's lifetime count
+// -------------------------
 
             saveAllData();
+            updateDashboard(); // Ensure UI reflects the new totals
 
 
             if (inventoryTable != null) inventoryTable.refresh();
@@ -791,25 +854,27 @@ public class HelloController {
                 calculatedFine = overdueDays * 60.0;
                 b.setBookFine(calculatedFine);
 
+
                 // Update Member's total debt
                 if (me != null) {
+                    me.setFinedCount(me.getFinedCount() + 1);
                     me.setMemberTotalDue(me.getMemberTotalDue() + calculatedFine);
                 }
             }
 
             // 5. FIX: Decrease the Member's active issue count
-            if (me != null) {
-                int currentIssues = me.getIssues();
-                if (currentIssues > 0) {
-                    me.setIssues(currentIssues - 1);
-                }
-            }
 
             // 6. Update Book Status to Available
             b.setStatus("Available");
 
+
             // 7. Save while issuedTo is still linked (to keep the fine record)
+
+
+            me.setTotalReturnsCount(me.getTotalReturnsCount() + 1); // Increment lifetime returns
+
             saveAllData();
+            updateDashboard(); // Refresh counts and progress bars
 
             // 8. Clear issue details from the book
             b.setIssueDate(null);
@@ -841,13 +906,21 @@ public class HelloController {
                 table1.refresh();
             }
 
+            // Calculate active issues for the message
+            long activeLeft = bookList.stream()
+                    .filter(book -> book.getIssuedTo() != null &&
+                            book.getIssuedTo().equalsIgnoreCase(loggedInMemberName) &&
+                            book.getStatus().equalsIgnoreCase("Issued"))
+                    .count();
+
             showAlert(Alert.AlertType.INFORMATION, "Success",
-                    "Book returned. Fine: " + calculatedFine + " TK. Active issues left: " + (me != null ? me.getIssues() : 0));
-            txt_search1.clear();
+                    "Book returned. Fine: " + calculatedFine + " TK. Active books remaining: " + activeLeft);
         } else {
             showAlert(Alert.AlertType.ERROR, "Error", "Invalid Book ID or book is not issued.");
         }
     }
+
+
     private void refreshReturnTables() {
         if (returnTable != null) {
             // Upore shudhu jegulo ekhon hate ache (Issued status)
@@ -917,6 +990,7 @@ public class HelloController {
                 }
 
                 saveAllData();
+                updateDashboard();
 
                 if (table1 != null) {
                     table1.refresh();
