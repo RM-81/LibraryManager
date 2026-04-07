@@ -71,7 +71,16 @@ public class Book {
     public String toString() {
         String iDate = (issueDate == null) ? "none" : issueDate.toString();
         String dDate = (dueDate == null) ? "none" : dueDate.toString();
-        return getId() + "," + getName() + "," + getAuthor() + "," + getStatus() + "," +
-                totalIssues + "," + iDate + "," + dDate + "," + bookFine + "," + issuedTo;
+
+        // Ensure all 9 fields are saved to the file in this exact order
+        return getId() + "," +
+                getName() + "," +
+                getAuthor() + "," +
+                getStatus() + "," +
+                getTotalIssues() + "," +
+                iDate + "," +
+                dDate + "," +
+                getBookFine() + "," +
+                getIssuedTo();
     }
 }

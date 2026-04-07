@@ -1,7 +1,2 @@
-zannatul minan,student,1,01769696925,minan2116@gmail.com,0.0,1,Blocked for 7 days (Reason: 3+ Fines),100.0,50.0,3,none
-mayel,student,1,017568403540,raianrashidmayel@gmail.com,0.0,2,none,0.0,200.0,2,none
-abir,student,2,01234424211,abir24@gmail.com,0.0,0,none,0.0,200.0,2,none
-s,s,2,s,s,0.0,0,none,700.0,900.0,1, | 2026-04-02: Paid 700.0 TK for Book ID B24
-p,p,0,p,p,0.0,0,none,0.0,0.0,0,none
-Rahikul rashid,hacker,0,01661661464,rahikulrashid34@gmail.com,0.0,0,none,0.0,0.0,0,none
-fahim faysal,student,0,,ffaysal00000@gmail.com,0.0,0,none,200.0,0.0,0, | 2026-04-02: Paid 100.0 TK for Book ID sad | 2026-04-02: Paid 100.0 TK for Book ID A23
+S,S,0,0,s,0.0,0,none,250.0,0.0,0,none
+p,p,1,p,p,0.0,0,none,8480.0,0.0,0,none

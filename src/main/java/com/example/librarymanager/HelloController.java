@@ -15,6 +15,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.beans.property.SimpleStringProperty;
 import java.time.LocalDate;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.io.*;
 import java.util.Scanner;
@@ -130,12 +132,15 @@ public class HelloController {
 
 
         if (returnTable != null) {
-
+            // 1. Column for ID, Name, and Author
             book_id.setCellValueFactory(new PropertyValueFactory<>("id"));
             book_name.setCellValueFactory(new PropertyValueFactory<>("name"));
             author.setCellValueFactory(new PropertyValueFactory<>("author"));
+
+            // 2. Status column showing Overdue info
             status.setCellValueFactory(cellData -> {
                 Book b = cellData.getValue();
+                // If the book is not issued, just show Available
                 if (b.getDueDate() == null || b.getIssuedTo().equals("none")) {
                     return new SimpleStringProperty("Available");
                 }
@@ -149,25 +154,64 @@ public class HelloController {
                 }
             });
 
-
+            // 3. THE FIX: Update the filter to only show "Issued" books
+            // This ensures that once status is changed to "Available" in handleReturnBook,
+            // it automatically vanishes from this table.
             returnTable.setItems(bookList.filtered(b ->
-                    b.getIssuedTo() != null && b.getIssuedTo().equalsIgnoreCase(loggedInMemberName)
+                    b.getIssuedTo() != null &&
+                            b.getIssuedTo().equalsIgnoreCase(loggedInMemberName) &&
+                            b.getStatus().equalsIgnoreCase("Issued") // <--- ADD THIS LINE
             ));
         }
 
 
         if (table1 != null) {
+            // 1. Basic Column Bindings
             book_id1.setCellValueFactory(new PropertyValueFactory<>("id"));
             book_name1.setCellValueFactory(new PropertyValueFactory<>("name"));
-            if (bookFineColumn != null) {
-                bookFineColumn.setCellValueFactory(new PropertyValueFactory<>("bookFine"));
-            }
+            author1.setCellValueFactory(new PropertyValueFactory<>("author"));
 
+            // 2. Overdue Days Column (sta1)
+            sta1.setCellValueFactory(cellData -> {
+                Book b = cellData.getValue();
+                // If there's no due date, it was never issued/overdue
+                if (b.getDueDate() == null) return new SimpleStringProperty("0");
 
+                LocalDate today = LocalDate.now();
+                // If the book is still "Issued", calculate days relative to Today
+                // If the book is "Available" (Returned), we show the final overdue count
+                if (b.getStatus().equalsIgnoreCase("Issued") && today.isAfter(b.getDueDate())) {
+                    long days = java.time.temporal.ChronoUnit.DAYS.between(b.getDueDate(), today);
+                    return new SimpleStringProperty(String.valueOf(days));
+                } else if (b.getBookFine() > 0) {
+                    // If returned but fine exists, show days based on the 60 TK rate
+                    long frozenDays = (long) (b.getBookFine() / 60.0);
+                    return new SimpleStringProperty(String.valueOf(frozenDays));
+                }
+                return new SimpleStringProperty("0");
+            });
+
+            // 3. Fine Column (Shows the 60 TK/day rate)
+            bookFineColumn.setCellValueFactory(cellData -> {
+                Book b = cellData.getValue();
+                LocalDate today = LocalDate.now();
+                double displayFine = b.getBookFine();
+
+                // LIVE UPDATE: If the book is still out and overdue, keep increasing the fine
+                if (b.getStatus().equalsIgnoreCase("Issued") && b.getDueDate() != null && today.isAfter(b.getDueDate())) {
+                    long overdueDays = java.time.temporal.ChronoUnit.DAYS.between(b.getDueDate(), today);
+                    displayFine = overdueDays * 60.0;
+                    b.setBookFine(displayFine); // Sync the object
+                }
+
+                return new SimpleDoubleProperty(displayFine).asObject();
+            });
+
+            // 4. THE FILTER: This keeps the book in the table even after return
             table1.setItems(bookList.filtered(b ->
                     b.getIssuedTo() != null &&
                             b.getIssuedTo().equalsIgnoreCase(loggedInMemberName) &&
-                            b.getBookFine() > 0
+                            (b.getBookFine() > 0 || (b.getDueDate() != null && LocalDate.now().isAfter(b.getDueDate())))
             ));
         }
 
@@ -214,13 +258,11 @@ public class HelloController {
 
         if (txt_search4 != null) {
             txt_search4.textProperty().addListener((obs, old, newValue) -> {
-
-                Book b = bookList.stream()
-                        .filter(book -> book.getName().equalsIgnoreCase(newValue) &&
-                                book.getIssuedTo().equals("none") &&
-                                book.getBookFine() > 0)
-                        .findFirst().orElse(null);
-                if (txt_search3 != null) txt_search3.setText(b != null ? b.getId() : "");
+                table1.setItems(bookList.filtered(b ->
+                        b.getIssuedTo().equalsIgnoreCase(loggedInMemberName) &&
+                                b.getBookFine() > 0 &&
+                                (newValue == null || newValue.isEmpty() || b.getName().toLowerCase().contains(newValue.toLowerCase()))
+                ));
             });
         }
     }
@@ -431,20 +473,21 @@ public class HelloController {
         bookList.clear();
         try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
+                // Inside your while(scanner.hasNextLine()) loop:
                 String line = sc.nextLine();
-                String[] p = line.split(",");
-                if (p.length == 9) {
+                String[] parts = line.split(",");
+                if (parts.length >= 9) {
+                    String id = parts[0];
+                    String name = parts[1];
+                    String author = parts[2];
+                    String status = parts[3];
+                    int issues = Integer.parseInt(parts[4]);
+                    LocalDate iDate = parts[5].equals("none") ? null : LocalDate.parse(parts[5]);
+                    LocalDate dDate = parts[6].equals("none") ? null : LocalDate.parse(parts[6]);
+                    double fine = Double.parseDouble(parts[7]);
+                    String user = parts[8];
 
-                    java.time.LocalDate issDate = p[5].equals("none") ? null : java.time.LocalDate.parse(p[5]);
-                    java.time.LocalDate dDate = p[6].equals("none") ? null : java.time.LocalDate.parse(p[6]);
-
-                    bookList.add(new Book(
-                            p[0], p[1], p[2], p[3],
-                            Integer.parseInt(p[4]),
-                            issDate, dDate,
-                            Double.parseDouble(p[7]),
-                            p[8]
-                    ));
+                    bookList.add(new Book(id, name, author, status, issues, iDate, dDate, fine, user));
                 }
             }
         } catch (Exception e) {
@@ -724,55 +767,85 @@ public class HelloController {
     }
 
     @FXML
-    public void handleReturnBook(ActionEvent event) {
-        String bId = txt_search1.getText().trim();
+    private void handleReturnBook() {
+        String bookId = txt_search1.getText().trim();
 
+        // 1. Find the book
         Book b = bookList.stream()
-                .filter(book -> book.getId().equals(bId))
-                .findFirst()
-                .orElse(null);
+                .filter(book -> book.getId().equalsIgnoreCase(bookId))
+                .findFirst().orElse(null);
 
-        if (b != null && b.getIssuedTo().equalsIgnoreCase(loggedInMemberName) && b.getStatus().equalsIgnoreCase("Issued")) {
+        // 2. Check if the book is currently issued
+        if (b != null && b.getStatus().equalsIgnoreCase("Issued")) {
+            LocalDate today = LocalDate.now();
+            double calculatedFine = 0;
 
-
+            // 3. Find the Member who issued the book
             Member me = memberList.stream()
-                    .filter(m -> m.getMail().equalsIgnoreCase(loggedInMemberName))
+                    .filter(m -> m.getMail().equalsIgnoreCase(b.getIssuedTo()))
                     .findFirst().orElse(null);
 
-            LocalDate today = LocalDate.now();
-            double fine = 0;
-
-
+            // 4. Calculate Individual Fine (50 TK per day)
             if (b.getDueDate() != null && today.isAfter(b.getDueDate())) {
-                long daysLate = java.time.temporal.ChronoUnit.DAYS.between(b.getDueDate(), today);
-                fine = daysLate * 50.0;
-                b.setBookFine(fine);
+                long overdueDays = java.time.temporal.ChronoUnit.DAYS.between(b.getDueDate(), today);
+                calculatedFine = overdueDays * 60.0;
+                b.setBookFine(calculatedFine);
+
+                // Update Member's total debt
                 if (me != null) {
-                    me.setMemberTotalDue(me.getMemberTotalDue() + fine);
+                    me.setMemberTotalDue(me.getMemberTotalDue() + calculatedFine);
                 }
-            } else {
-                b.setBookFine(0.0);
             }
 
-
-            if (me != null && me.getIssues() > 0) {
-                me.setIssues(me.getIssues() - 1);
+            // 5. FIX: Decrease the Member's active issue count
+            if (me != null) {
+                int currentIssues = me.getIssues();
+                if (currentIssues > 0) {
+                    me.setIssues(currentIssues - 1);
+                }
             }
 
-
+            // 6. Update Book Status to Available
             b.setStatus("Available");
-            b.setIssuedTo("none");
+
+            // 7. Save while issuedTo is still linked (to keep the fine record)
+            saveAllData();
+
+            // 8. Clear issue details from the book
             b.setIssueDate(null);
             b.setDueDate(null);
+            // Keep issuedTo for the fine table; only set to "none" if fine is 0
+            if (calculatedFine <= 0) {
+                b.setIssuedTo("none");
+            }
 
-            saveAllData();
-            refreshReturnTables();
+            saveAllData(); // Final save
 
+            // 9. UI REFRESH: Make book disappear from Return Table immediately
+            if (returnTable != null) {
+                returnTable.setItems(bookList.filtered(book ->
+                        book.getIssuedTo() != null &&
+                                book.getIssuedTo().equalsIgnoreCase(loggedInMemberName) &&
+                                book.getStatus().equalsIgnoreCase("Issued")
+                ));
+                returnTable.refresh();
+            }
+
+            // 10. UI REFRESH: Show the new fine in the Fines Table (table1)
+            if (table1 != null) {
+                table1.setItems(bookList.filtered(book ->
+                        book.getIssuedTo() != null &&
+                                book.getIssuedTo().equalsIgnoreCase(loggedInMemberName) &&
+                                (LocalDate.now().isAfter(book.getDueDate()) || book.getBookFine() > 0)
+                ));
+                table1.refresh();
+            }
+
+            showAlert(Alert.AlertType.INFORMATION, "Success",
+                    "Book returned. Fine: " + calculatedFine + " TK. Active issues left: " + (me != null ? me.getIssues() : 0));
             txt_search1.clear();
-            txt_search2.clear();
-            showAlert(Alert.AlertType.INFORMATION, "Success", "Book Returned! Now you can issue another book.");
         } else {
-            showAlert(Alert.AlertType.ERROR, "Error", "Invalid Book ID or not issued to you!");
+            showAlert(Alert.AlertType.ERROR, "Error", "Invalid Book ID or book is not issued.");
         }
     }
     private void refreshReturnTables() {
@@ -792,69 +865,71 @@ public class HelloController {
     }
 
     @FXML
-    public void handlePayFine(ActionEvent event) {
-        String enteredId = txt_search3.getText().trim();
-        String amountStr = txt_payamount.getText().trim();
-
-
-        if (enteredId.isEmpty() || amountStr.isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Input Error", "Please enter Book ID and Amount.");
-            return;
-        }
-
-
-        Book b = bookList.stream()
-                .filter(book -> book.getId().equals(enteredId) && book.getBookFine() > 0)
-                .findFirst().orElse(null);
-
-        if (b == null) {
-            showAlert(Alert.AlertType.ERROR, "Invalid ID", "No pending fine found for this Book ID.");
-            return;
-        }
-
+    private void handlePayFine() {
         try {
+            String bookId = txt_search3.getText().trim();
+            String amountStr = txt_payamount.getText().trim();
+
+            if (bookId.isEmpty() || amountStr.isEmpty()) {
+                showAlert(Alert.AlertType.WARNING, "Input Error", "Please enter both Book ID and Amount.");
+                return;
+            }
+
             double payAmount = Double.parseDouble(amountStr);
+            Book b = bookList.stream()
+                    .filter(book -> book.getId().equalsIgnoreCase(bookId))
+                    .findFirst().orElse(null);
+
+            if (b == null) {
+                showAlert(Alert.AlertType.ERROR, "Not Found", "No book found with ID: " + bookId);
+                return;
+            }
+
+            // --- BLOCKING MECHANISM ---
+            // Check if the book is still issued (not yet returned)
+            if (b.getStatus().equalsIgnoreCase("Issued")) {
+                showAlert(Alert.AlertType.ERROR, "Return Book First",
+                        "You cannot pay the fine while the book is still with you.\n" +
+                                "Please return the book first to freeze the fine amount.");
+                return;
+            }
+            // ---------------------------
+
+            if (payAmount > b.getBookFine()) {
+                showAlert(Alert.AlertType.ERROR, "Overpayment", "You cannot pay more than the fine amount.");
+                return;
+            }
+
             Member me = memberList.stream()
                     .filter(m -> m.getMail().equalsIgnoreCase(loggedInMemberName))
                     .findFirst().orElse(null);
 
             if (me != null) {
-
-                if (payAmount <= 0 || payAmount > b.getBookFine()) {
-                    showAlert(Alert.AlertType.ERROR, "Invalid Amount", "Amount must be between 1 and " + b.getBookFine());
-                    return;
-                }
-
-
+                // Update Financials
                 b.setBookFine(b.getBookFine() - payAmount);
                 me.setMemberTotalPaid(me.getMemberTotalPaid() + payAmount);
                 me.setMemberTotalDue(Math.max(0, me.getMemberTotalDue() - payAmount));
 
-
-                String historyEntry = java.time.LocalDate.now() + ": Paid " + payAmount + " TK for Book ID " + b.getId();
-
-                me.setPaymentHistory(me.getPaymentHistory() + " | " + historyEntry);
-
+                // If fully paid, clear the link
+                if (b.getBookFine() <= 0) {
+                    b.setIssuedTo("none");
+                    b.setDueDate(null);
+                }
 
                 saveAllData();
 
-
                 if (table1 != null) {
-
-                    table1.setItems(bookList.filtered(book -> book.getBookFine() > 0));
+                    table1.refresh();
                 }
-                if (memberTable != null) memberTable.refresh();
 
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Payment of " + payAmount + " TK successful!");
-
-
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Payment accepted. Remaining: " + b.getBookFine() + " TK.");
                 txt_search3.clear();
                 txt_payamount.clear();
             }
+
         } catch (NumberFormatException e) {
-            showAlert(Alert.AlertType.ERROR, "Input Error", "Please enter a valid numeric amount.");
+            showAlert(Alert.AlertType.ERROR, "Input Error", "Invalid numeric amount.");
         }
     }
-
 }
 
