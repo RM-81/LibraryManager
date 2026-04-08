@@ -177,16 +177,6 @@
                   <Font name="Century Gothic" size="12.0" />
                </font>
             </TextField>
-            <TextField fx:id="txt_search4" layoutX="512.0" layoutY="315.0" promptText="Search Book Name" styleClass="txt_search" stylesheets="@style.css">
-               <font>
-                  <Font name="Century Gothic" size="12.0" />
-               </font>
-            </TextField>
-            <ImageView accessibleRole="BUTTON" fitHeight="29.0" fitWidth="21.0" layoutX="486.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icons/download-removebg-preview.png" />
-               </image>
-            </ImageView>
             </children>
         </Pane>
     </children>

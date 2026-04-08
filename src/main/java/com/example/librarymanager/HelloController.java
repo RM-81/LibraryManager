@@ -18,16 +18,21 @@ import java.time.LocalDate;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+
 import java.io.*;
 import java.util.Scanner;
 
+import java.awt.Desktop;
+import java.net.URI;
+import javafx.scene.input.MouseEvent;
+
 public class HelloController {
 
-    // --- Session & Stage Management ---
+    // Session & Stage Management
     public static String loggedInMemberName = "Guest";
     private static Stage primaryStage;
 
-    // --- FXML UI Elements ---
+    // FXML UI Elements
     @FXML
     private Button btn_user_profile;
 
@@ -56,13 +61,12 @@ public class HelloController {
     @FXML
     private TableColumn<Book, Double> bookFineColumn;
 
-    // Inventory Input Fields (onAddBookClick er jonno egulo lagbe)
     @FXML
-    private TextField id;    // fx:id="id"
+    private TextField id;
     @FXML
-    private TextField name;  // fx:id="name"
+    private TextField name;
     @FXML
-    private TextField auth;  // fx:id="auth"
+    private TextField auth;
 
     // Search & Issue Fields
     @FXML
@@ -70,7 +74,7 @@ public class HelloController {
     @FXML
     private TextField txt_search11;  // Author Name Field
     @FXML
-    private TextField txt_search1;   // Issue Book ID Field (Enter Book Id section)
+    private TextField txt_search1;   // Issue Book ID Field
     @FXML
     private DatePicker submissionDatePicker; // Submission Date Picker
     // Members UI
@@ -86,7 +90,7 @@ public class HelloController {
     @FXML
     private TableColumn<Book, String> book_id1, book_name1, author1, sta1;
     @FXML
-    private TextField txt_search2; // Return Book Name (Auto-fill)
+    private TextField txt_search2; // Return Book Name
     @FXML
     private TextField txt_search3; // Pay Book ID
     @FXML
@@ -95,23 +99,39 @@ public class HelloController {
     private TextField txt_payamount; // Pay Amount
     private final ObservableList<Book> fineList = FXCollections.observableArrayList();
 
-    // Labels for System-wide and Personal Stats [cite: 1, 2]
+    // Labels for System-wide and Personal Stats
     @FXML private Label total_issues, my_issues;
     @FXML private Label total_returns, my_returns;
     @FXML private Label total_fines, my_fines;
-    @FXML private Label total_donations; // Total books added [cite: 1, 2]
+    @FXML private Label total_donations; // Total books added
     @FXML private Label total_dues, my_dues;
 
-    // Progress Bars [cite: 1, 2]
+    // Progress Bars
     @FXML private ProgressBar issue_progress, return_progress, fine_progress, due_progress;
 
-    // --- Data Storage & Files ---
+    //Data Storage & Files
     private final ObservableList<Book> bookList = FXCollections.observableArrayList();
     private final ObservableList<Member> memberList = FXCollections.observableArrayList();
 
     private final String BOOK_FILE = "library_data.txt";
     private final String MEMBER_FILE = "members.txt";
     private final String USER_DATA_FILE = "user_data.txt";
+
+    @FXML
+    private void onChatButtonClick(ActionEvent event) {
+        try {
+            // Load the new FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("community-chat.fxml"));
+            Parent root = loader.load();
+
+            // Switch the scene on the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(root);
+            stage.setTitle("Bookverse - Community Chat");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     public void initialize() {
@@ -143,15 +163,12 @@ public class HelloController {
 
 
         if (returnTable != null) {
-            // 1. Column for ID, Name, and Author
             book_id.setCellValueFactory(new PropertyValueFactory<>("id"));
             book_name.setCellValueFactory(new PropertyValueFactory<>("name"));
             author.setCellValueFactory(new PropertyValueFactory<>("author"));
 
-            // 2. Status column showing Overdue info
             status.setCellValueFactory(cellData -> {
                 Book b = cellData.getValue();
-                // If the book is not issued, just show Available
                 if (b.getDueDate() == null || b.getIssuedTo().equals("none")) {
                     return new SimpleStringProperty("Available");
                 }
@@ -164,14 +181,10 @@ public class HelloController {
                     return new SimpleStringProperty(daysBetween + " days remaining");
                 }
             });
-
-            // 3. THE FIX: Update the filter to only show "Issued" books
-            // This ensures that once status is changed to "Available" in handleReturnBook,
-            // it automatically vanishes from this table.
             returnTable.setItems(bookList.filtered(b ->
                     b.getIssuedTo() != null &&
                             b.getIssuedTo().equalsIgnoreCase(loggedInMemberName) &&
-                            b.getStatus().equalsIgnoreCase("Issued") // <--- ADD THIS LINE
+                            b.getStatus().equalsIgnoreCase("Issued")
             ));
         }
 
@@ -189,8 +202,6 @@ public class HelloController {
                 if (b.getDueDate() == null) return new SimpleStringProperty("0");
 
                 LocalDate today = LocalDate.now();
-                // If the book is still "Issued", calculate days relative to Today
-                // If the book is "Available" (Returned), we show the final overdue count
                 if (b.getStatus().equalsIgnoreCase("Issued") && today.isAfter(b.getDueDate())) {
                     long days = java.time.temporal.ChronoUnit.DAYS.between(b.getDueDate(), today);
                     return new SimpleStringProperty(String.valueOf(days));
@@ -202,17 +213,17 @@ public class HelloController {
                 return new SimpleStringProperty("0");
             });
 
-            // 3. Fine Column (Shows the 60 TK/day rate)
+            // Fine Column (Shows the 60 TK/day rate)
             bookFineColumn.setCellValueFactory(cellData -> {
                 Book b = cellData.getValue();
                 LocalDate today = LocalDate.now();
                 double displayFine = b.getBookFine();
 
-                // LIVE UPDATE: If the book is still out and overdue, keep increasing the fine
+                //If the book is still out and overdue, keep increasing the fine
                 if (b.getStatus().equalsIgnoreCase("Issued") && b.getDueDate() != null && today.isAfter(b.getDueDate())) {
                     long overdueDays = java.time.temporal.ChronoUnit.DAYS.between(b.getDueDate(), today);
                     displayFine = overdueDays * 60.0;
-                    b.setBookFine(displayFine); // Sync the object
+                    b.setBookFine(displayFine);
                 }
 
                 return new SimpleDoubleProperty(displayFine).asObject();
@@ -323,7 +334,7 @@ public class HelloController {
         return memberList.stream().mapToDouble(Member::getMemberTotalDue).sum();
     }
 
-    // --- 1. AUTHENTICATION & REGISTRATION ---
+    // AUTHENTICATION & REGISTRATION
 
     @FXML
     public void onLoginClick(ActionEvent event) {
@@ -420,7 +431,7 @@ public class HelloController {
         conta.clear();
     }
 
-    // --- 3. NAVIGATION & UI ---
+    // NAVIGATION & UI
 
     private void changeScene(ActionEvent event, String fxmlFile) {
         try {
@@ -498,7 +509,7 @@ public class HelloController {
         refreshReturnTables();
     }
 
-    // --- 4. DATA PERSISTENCE ---
+    // DATA PERSISTENCE
 
     private void saveToFile(String fileName, String data) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
@@ -527,8 +538,6 @@ public class HelloController {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] parts = line.split(",");
-
-                // It must handle exactly 9 parts to match your Book constructor
                 if (parts.length == 9) {
                     Book book = new Book(
                             parts[0], // ID
@@ -643,9 +652,7 @@ public class HelloController {
         alert.showAndWait();
     }
 
-    // --- SORTING ---
-    // --- SORTING LOGIC ---
-    // --- SORTING LOGIC (REPLACED) ---
+
     @FXML
     public void onSortAuthor(ActionEvent event) {
 
@@ -684,7 +691,7 @@ public class HelloController {
         if (issueTable != null) issueTable.refresh();
     }
 
-    // --- SEARCH & POPUP --
+    //EARCH & POPUP
     @FXML
     public void handleSmartSearch(ActionEvent event) {
         String nameInput = txt_search111.getText().trim().toLowerCase();
@@ -742,7 +749,7 @@ public class HelloController {
         }
     }
 
-    // --- EXTENDED ISSUE LOGIC ---
+    //EXTENDED ISSUE LOGIC
     @FXML
     public void handleIssueBook(ActionEvent event) {
         String bId = txt_search1.getText().trim();
@@ -792,10 +799,9 @@ public class HelloController {
             b.setIssueDate(LocalDate.now());
             b.setDueDate(submissionDatePicker.getValue());
 
-// --- CUMULATIVE UPDATE ---
+            //CUMULATIVE UPDATE
             b.incrementTotalIssues();      // Book's lifetime count
             me.setIssues(me.getIssues() + 1); // Member's lifetime count
-// -------------------------
 
             saveAllData();
             updateDashboard(); // Ensure UI reflects the new totals
@@ -862,13 +868,9 @@ public class HelloController {
                 }
             }
 
-            // 5. FIX: Decrease the Member's active issue count
-
-            // 6. Update Book Status to Available
             b.setStatus("Available");
 
 
-            // 7. Save while issuedTo is still linked (to keep the fine record)
 
 
             me.setTotalReturnsCount(me.getTotalReturnsCount() + 1); // Increment lifetime returns
@@ -886,7 +888,7 @@ public class HelloController {
 
             saveAllData(); // Final save
 
-            // 9. UI REFRESH: Make book disappear from Return Table immediately
+            // UI REFRESH: Make book disappear from Return Table immediately
             if (returnTable != null) {
                 returnTable.setItems(bookList.filtered(book ->
                         book.getIssuedTo() != null &&
@@ -920,10 +922,9 @@ public class HelloController {
         }
     }
 
-
+// refreesh tables after return
     private void refreshReturnTables() {
         if (returnTable != null) {
-            // Upore shudhu jegulo ekhon hate ache (Issued status)
             returnTable.setItems(bookList.filtered(book ->
                     book.getIssuedTo().equalsIgnoreCase(loggedInMemberName) &&
                             book.getStatus().equalsIgnoreCase("Issued")));
@@ -936,7 +937,7 @@ public class HelloController {
                             book.getBookFine() > 0));
         }
     }
-
+// handles fine pay
     @FXML
     private void handlePayFine() {
         try {
@@ -966,7 +967,6 @@ public class HelloController {
                                 "Please return the book first to freeze the fine amount.");
                 return;
             }
-            // ---------------------------
 
             if (payAmount > b.getBookFine()) {
                 showAlert(Alert.AlertType.ERROR, "Overpayment", "You cannot pay more than the fine amount.");
@@ -1003,6 +1003,53 @@ public class HelloController {
 
         } catch (NumberFormatException e) {
             showAlert(Alert.AlertType.ERROR, "Input Error", "Invalid numeric amount.");
+        }
+    }
+
+    //handle links
+
+    @FXML
+    private void handleone(MouseEvent event) {
+        String url = "https://online.fliphtml5.com/shbfot/qcvx/#p=10";
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(new URI(url));
+            } else {
+                // Laptop/Windows specific fallback
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+            }
+        } catch (Exception e) {
+            System.out.println("Could not open browser: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handletwo(MouseEvent event) {
+        String url = "https://online.anyflip.com/kcdpv/ecxn/mobile/index.html";
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(new URI(url));
+            } else {
+                // Laptop/Windows specific fallback
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+            }
+        } catch (Exception e) {
+            System.out.println("Could not open browser: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handlethree(MouseEvent event) {
+        String url = "https://online.fliphtml5.com/wqjwb/dvbo/#p=1";
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(new URI(url));
+            } else {
+                // Laptop/Windows specific fallback
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+            }
+        } catch (Exception e) {
+            System.out.println("Could not open browser: " + e.getMessage());
         }
     }
 }
