@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -11,9 +12,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="936.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.librarymanager.HelloController">
@@ -22,75 +20,86 @@
             <children>
                 <AnchorPane fx:id="side_ankerpane" prefHeight="556.0" prefWidth="222.0" styleClass="side_ankerpane" stylesheets="@style.css">
                     <children>
-                        <Pane fx:id="inner_pane" layoutX="7.0" layoutY="22.0" prefHeight="58.0" prefWidth="221.0" styleClass="inner_pane" stylesheets="@style.css">
+                        <Pane fx:id="inner_pane" layoutX="7.0" layoutY="11.0" prefHeight="58.0" prefWidth="205.0" styleClass="inner_pane" stylesheets="@style.css">
                             <children>
-                                <ImageView fitHeight="35.0" fitWidth="64.0" layoutX="23.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="35.0" fitWidth="64.0" layoutX="71.0" layoutY="12.0" opacity="0.64" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@icons/images-removebg-preview.png" />
                                     </image>
                                 </ImageView>
-                                <Pane fx:id="most_inner_pane" layoutX="155.0" layoutY="1.0" prefHeight="58.0" prefWidth="43.0" styleClass="most_inner_pane" stylesheets="@style.css">
-                                    <children>
-                                        <ImageView fitHeight="49.0" fitWidth="29.0" layoutX="7.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@icons/images.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </Pane>
                             </children>
                         </Pane>
-                        <Button fx:id="btn_dashboard" layoutX="11.0" layoutY="115.0" mnemonicParsing="false" onAction="#onDashboardButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_dashboard" stylesheets="@style.css" text="Dashboard" textFill="#913434">
+                        <Button fx:id="btn_dashboard" layoutX="18.0" layoutY="96.0" mnemonicParsing="false" onAction="#onDashboardButtonClick" prefHeight="43.0" prefWidth="214.0" stylesheets="@style.css" text="Dashboard" textFill="#913434" translateX="-3.0">
                             <font>
                                 <Font name="Algerian" size="20.0" />
                             </font>
+                     <styleClass>
+                        <String fx:value="btn_dashboard" />
+                        <String fx:value="btn_hight" />
+                     </styleClass>
                         </Button>
-                        <ImageView fitHeight="35.0" fitWidth="50.0" layoutX="24.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="35.0" fitWidth="50.0" layoutX="18.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@icons/pngtree-colorful-home-icon-vector-flat-illustration-image_482018.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="btn_inventory" layoutX="10.0" layoutY="165.0" mnemonicParsing="false" onAction="#onInventoryButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_inventory" stylesheets="@style.css" text=" Inventory" textFill="#913434">
+                        <Button fx:id="btn_inventory" layoutX="17.0" layoutY="156.0" mnemonicParsing="false" onAction="#onInventoryButtonClick" prefHeight="43.0" prefWidth="214.0" stylesheets="@style.css" text=" Inventory" textFill="#913434" translateX="-3.0">
                             <font>
                                 <Font name="Algerian" size="20.0" />
                             </font>
+                     <styleClass>
+                        <String fx:value="btn_inventory" />
+                        <String fx:value="btn_hight" />
+                     </styleClass>
                         </Button>
-                        <Button fx:id="btn_members" layoutX="13.0" layoutY="214.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="214.0" styleClass="btn_members" stylesheets="@style.css" text="Members" textFill="#913434">
+                        <Button fx:id="btn_members" layoutX="17.0" layoutY="214.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="214.0" stylesheets="@style.css" text="Members" textFill="#913434" translateX="-3.0">
                             <font>
                                 <Font name="Algerian" size="20.0" />
                             </font>
+                     <styleClass>
+                        <String fx:value="btn_members" />
+                        <String fx:value="btn_hight" />
+                     </styleClass>
                         </Button>
-                        <Button fx:id="btn_issue" layoutX="13.0" layoutY="265.0" mnemonicParsing="false" onAction="#onIssueButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_issue" stylesheets="@style.css" text="ISSUE" textFill="#913434">
+                        <Button fx:id="btn_issue" layoutX="17.0" layoutY="273.0" mnemonicParsing="false" onAction="#onIssueButtonClick" prefHeight="43.0" prefWidth="214.0" stylesheets="@style.css" text="ISSUE" textFill="#913434" translateX="-3.0">
                             <font>
                                 <Font name="Algerian" size="20.0" />
                             </font>
+                     <styleClass>
+                        <String fx:value="btn_issue" />
+                        <String fx:value="btn_hight" />
+                     </styleClass>
                         </Button>
-                        <Button fx:id="btn_return" layoutX="13.0" layoutY="315.0" mnemonicParsing="false" onAction="#onReturnButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_return" stylesheets="@style.css" text="RETURN" textFill="#913434">
+                        <Button fx:id="btn_return" layoutX="17.0" layoutY="331.0" mnemonicParsing="false" onAction="#onReturnButtonClick" prefHeight="43.0" prefWidth="214.0" stylesheets="@style.css" text="RETURN" textFill="#913434" translateX="-3.0">
                             <font>
                                 <Font name="Algerian" size="20.0" />
                             </font>
+                     <styleClass>
+                        <String fx:value="btn_return" />
+                        <String fx:value="btn_hight" />
+                     </styleClass>
                         </Button>
-                        <ImageView fitHeight="35.0" fitWidth="43.0" layoutX="26.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="35.0" fitWidth="43.0" layoutX="17.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@icons/Gemini_Generated_Image_lnmd7flnmd7flnmd.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="30.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="21.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@icons/Screenshot%202026-02-19%20075204.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="31.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="25.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@icons/images%20(1).png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="37.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="26.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@icons/Cheerful%20boy%20with%20colorful%20books.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="196.0" layoutX="43.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="196.0" layoutX="38.0" layoutY="392.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@icons/Screenshot_2026-02-19_083955-removebg-preview.png" />
                             </image>
@@ -103,62 +112,24 @@
             <children>
                 <Pane fx:id="head" layoutX="9.0" layoutY="6.0" prefHeight="70.0" prefWidth="685.0" styleClass="head">
                     <children>
-                        <ImageView fitHeight="29.0" fitWidth="21.0" layoutX="394.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@icons/download-removebg-preview.png" />
-                            </image>
-                        </ImageView>
 
-                        <TextField fx:id="txt_search" layoutX="423.0" layoutY="21.0" promptText="Search" styleClass="txt_search" stylesheets="@style.css">
-                            <font>
-                                <Font name="Century Gothic" size="12.0" />
-                            </font>
-                        </TextField>
+                        <Button fx:id="btn_search_icon" layoutX="590.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" />
 
-                        <Button fx:id="btn_search_icon" layoutX="590.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;">
-                            <graphic>
-                                <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@icons/900834-removebg-preview.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-
-                        <Button fx:id="btn_user_profile" layoutX="640.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;">
-                            <graphic>
-                                <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@icons/3135715-removebg-preview.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                        <Label layoutX="14.0" layoutY="11.0" prefHeight="49.0" prefWidth="258.0" text="Bookverse">
+                        <Button fx:id="btn_user_profile" layoutX="640.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" />
+                        <Label layoutX="14.0" layoutY="11.0" prefHeight="49.0" prefWidth="258.0" text="Bookverse" textFill="#00524d">
                             <font>
                                 <Font name="Algerian" size="43.0" />
                             </font>
-                            <textFill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop>
-                                            <color>
-                                                <Color red="0.7368420958518982" green="0.09824561327695847" blue="0.09824561327695847" />
-                                            </color>
-                                        </Stop>
-                                        <Stop offset="1.0">
-                                            <color>
-                                                <Color red="0.12631578743457794" green="0.11555555462837219" blue="0.11555555462837219" />
-                                            </color>
-                                        </Stop>
-                                    </stops>
-                                </LinearGradient>
-                            </textFill>
                         </Label>
+                          <ImageView fitHeight="49.0" fitWidth="42.0" layoutX="630.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@icons/3135715-removebg-preview.png" />
+                              </image>
+                          </ImageView>
                     </children>
                 </Pane>
                 <Button fx:id="btn_search_icon1" layoutX="291.0" layoutY="120.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" />
-                <TableView fx:id="memberTable" layoutX="9.0" layoutY="82.0" prefHeight="241.0" prefWidth="685.0">
+                <TableView fx:id="memberTable" layoutX="9.0" layoutY="82.0" prefHeight="241.0" prefWidth="685.0" styleClass="table">
                     <columns>
                         <TableColumn fx:id="memname" prefWidth="135.2000217437744" styleClass="memname" text="Member Name" />
                         <TableColumn fx:id="prof" prefWidth="100.0" styleClass="prof" text="Profession" />
@@ -169,26 +140,10 @@
                 </TableView>
                 <Pane layoutX="9.0" layoutY="332.0" prefHeight="200.0" prefWidth="685.0">
                     <children>
-                        <Label layoutX="14.0" layoutY="7.0" prefHeight="17.0" prefWidth="294.0" text="Get membership now!!!">
+                        <Label layoutX="14.0" layoutY="7.0" prefHeight="17.0" prefWidth="294.0" text="Get membership now!!!" textFill="#cbefeb">
                             <font>
                                 <Font name="Algerian" size="25.0" />
                             </font>
-                            <textFill>
-                                <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.3674241629513828">
-                                    <stops>
-                                        <Stop>
-                                            <color>
-                                                <Color red="0.035087719559669495" green="0.2836257219314575" blue="0.6315789222717285" />
-                                            </color>
-                                        </Stop>
-                                        <Stop offset="1.0">
-                                            <color>
-                                                <Color red="0.8947368264198303" green="0.27504873275756836" blue="0.27504873275756836" />
-                                            </color>
-                                        </Stop>
-                                    </stops>
-                                </LinearGradient>
-                            </textFill>
                         </Label>
                         <TextField fx:id="nam" layoutX="14.0" layoutY="44.0" prefHeight="29.0" prefWidth="186.0" promptText="Name" styleClass="auth">
                             <font>
@@ -210,68 +165,20 @@
                                 <Font name="Algerian" size="12.0" />
                             </font>
                         </TextField>
-                        <Button fx:id="bec" layoutX="426.0" layoutY="59.0" mnemonicParsing="false" onAction="#onBecomeMemberClick" prefHeight="43.0" prefWidth="198.0" styleClass="add" text="Become one of us!!">
+                        <Button fx:id="bec" layoutX="426.0" layoutY="59.0" mnemonicParsing="false" onAction="#onBecomeMemberClick" prefHeight="43.0" prefWidth="198.0" styleClass="add" text="Become one of us!!" textFill="WHITE">
                             <font>
                                 <Font name="Algerian" size="20.0" />
                             </font>
-                            <textFill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop>
-                                            <color>
-                                                <Color red="0.23157894611358643" green="0.20584794878959656" blue="0.20584794878959656" />
-                                            </color>
-                                        </Stop>
-                                        <Stop offset="1.0">
-                                            <color>
-                                                <Color red="0.621052622795105" green="0.19168290495872498" blue="0.10580896586179733" />
-                                            </color>
-                                        </Stop>
-                                    </stops>
-                                </LinearGradient>
-                            </textFill>
                         </Button>
-                  <Label layoutX="42.0" layoutY="144.0" text="Already Member?">
+                  <Label layoutX="24.0" layoutY="144.0" text="Already Member?" textFill="#caede9">
                      <font>
                         <Font name="Algerian" size="28.0" />
                      </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.2831968665122986" green="0.42105263471603394" blue="0.2619883120059967" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.6000000238418579" green="0.11999999731779099" blue="0.11999999731779099" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
                   </Label>
-                  <Button fx:id="btn_see_card" layoutX="317.0" layoutY="131.0" mnemonicParsing="false" onAction="#onSeeMyCardClick" prefHeight="58.0" prefWidth="186.0" styleClass="add" text="See My Card">
+                  <Button fx:id="btn_see_card" layoutX="295.0" layoutY="139.0" mnemonicParsing="false" onAction="#onSeeMyCardClick" prefHeight="43.0" prefWidth="186.0" styleClass="add" text="See My Card" textFill="WHITE">
                      <font>
                         <Font name="Algerian" size="20.0" />
                      </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.821052610874176" green="0.5423002243041992" blue="0.4409356713294983" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.9684210419654846" green="0.025107212364673615" blue="0.025107212364673615" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
                   </Button>
                     </children>
                 </Pane>

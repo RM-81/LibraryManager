@@ -9,74 +9,42 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: linear-gradient(to bottom right, #688ecf, #061e47); -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: linear-gradient(to bottom, #48A89A, #00524D);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label alignment="CENTER" layoutX="10.0" layoutY="7.0" prefHeight="32.0" prefWidth="330.0" text="Bookverse">
+        <Label alignment="CENTER" layoutX="10.0" layoutY="7.0" prefHeight="32.0" prefWidth="330.0" text="Bookverse" textFill="#caede9">
             <font><Font name="Algerian" size="30.0" /></font>
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="0.13257576660676437">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.8631578683853149" green="0.05434697866439819" blue="0.05434697866439819" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
         </Label>
-        <Label fx:id="cardName" layoutX="26.0" layoutY="84.0" text="NAME" textFill="#fffcfc">
+        <Label fx:id="cardName" layoutX="26.0" layoutY="84.0" text="NAME" textFill="#cbefeb">
             <font><Font name="Algerian" size="20.0" /></font>
         </Label>
-        <Label fx:id="cardProf" layoutX="24.0" layoutY="126.0" text="Profession" textFill="#fffcfc">
+        <Label fx:id="cardProf" layoutX="24.0" layoutY="126.0" text="Profession" textFill="#cbefeb">
             <font><Font name="Algerian" size="16.0" /></font>
         </Label>
-        <Label fx:id="cardMail" layoutX="25.0" layoutY="163.0" text="Email" textFill="#fffcfc">
+        <Label fx:id="cardMail" layoutX="25.0" layoutY="163.0" text="Email" textFill="#cbefeb">
          <font>
             <Font name="Algerian" size="14.0" />
          </font></Label>
-      <Label layoutX="80.0" layoutY="41.0" text="Membership card">
+      <Label layoutX="85.0" layoutY="37.0" text="Membership card" textFill="#caede9">
          <font>
-            <Font name="Arial Rounded MT Bold" size="23.0" />
+            <Font name="Arial Rounded MT Bold" size="21.0" />
          </font>
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="0.13257576660676437">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.8631578683853149" green="0.05434697866439819" blue="0.05434697866439819" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
       </Label>
-      <ImageView fitHeight="58.0" fitWidth="52.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="43.0" fitWidth="68.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@icons/images-removebg-preview.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="43.0" fitWidth="52.0" layoutX="293.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="43.0" fitWidth="52.0" layoutX="290.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@icons/Screenshot_2026-02-19_083955-removebg-preview.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="64.0" fitWidth="99.0" layoutX="226.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="64.0" fitWidth="99.0" layoutX="226.0" layoutY="82.0" opacity="0.69" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@icons/book-and-reading-statistics-min-removebg-preview.png" />
          </image>
       </ImageView>
-      <Label layoutX="235.0" layoutY="136.0" text="Gold reader">
+      <Label layoutX="235.0" layoutY="147.0" text="Gold reader">
          <font>
             <Font name="Arial Rounded MT Bold" size="14.0" />
          </font>
@@ -85,12 +53,12 @@
                <stops>
                   <Stop>
                      <color>
-                        <Color red="0.49473685026168823" green="0.3298245668411255" blue="5.492682422910547E-17" />
+                        <Color red="0.2823529541492462" green="0.658823549747467" blue="0.6039215922355652" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="0.832105278968811" green="0.8947368264198303" blue="0.2684210538864136" />
+                        <Color red="0.7960784435272217" green="0.9372549057006836" blue="0.9215686321258545" />
                      </color>
                   </Stop>
                </stops>

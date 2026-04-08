@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,74 +18,69 @@
 
 <HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="936.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.librarymanager.HelloController">
    <children>
-      <VBox fx:id="root_one" prefHeight="556.0" prefWidth="230.0" styleClass="root_one">
+      <VBox fx:id="root_one" prefHeight="567.0" prefWidth="236.0" styleClass="root_one">
          <children>
             <AnchorPane fx:id="side_ankerpane" prefHeight="556.0" prefWidth="222.0" styleClass="side_ankerpane" stylesheets="@style.css">
                <children>
-                  <Pane fx:id="inner_pane" layoutX="7.0" layoutY="22.0" prefHeight="58.0" prefWidth="221.0" styleClass="inner_pane" stylesheets="@style.css">
+                  <Pane fx:id="inner_pane" layoutX="5.0" layoutY="22.0" prefHeight="58.0" prefWidth="221.0" styleClass="inner_pane" stylesheets="@style.css" translateX="-3.0" translateY="-12.0">
                      <children>
-                        <ImageView fitHeight="35.0" fitWidth="64.0" layoutX="23.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="35.0" fitWidth="86.0" layoutX="74.0" layoutY="11.0" opacity="0.52" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@icons/images-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <Pane fx:id="most_inner_pane" layoutX="155.0" layoutY="1.0" prefHeight="58.0" prefWidth="43.0" styleClass="most_inner_pane" stylesheets="@style.css">
-                           <children>
-                              <ImageView fitHeight="49.0" fitWidth="29.0" layoutX="7.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@icons/images.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </Pane>
                      </children>
                   </Pane>
-                  <Button fx:id="btn_dashboard" layoutX="11.0" layoutY="115.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="214.0" styleClass="btn_dashboard" stylesheets="@style.css" text="Dashboard" textFill="#913434">
+                  <Button fx:id="btn_dashboard" layoutX="21.0" layoutY="109.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="189.0" stylesheets="@style.css" text="Dashboard" textFill="#913434" translateX="-2.0" translateY="8.0">
                      <font>
                         <Font name="Algerian" size="20.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="btn_dashboard" />
+                        <String fx:value="btn_hight" />
+                     </styleClass>
                   </Button>
-                  <ImageView fitHeight="35.0" fitWidth="50.0" layoutX="24.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="50.0" layoutX="24.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" translateY="5.0">
                      <image>
                         <Image url="@icons/pngtree-colorful-home-icon-vector-flat-illustration-image_482018.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btn_inventory" layoutX="13.0" layoutY="165.0" mnemonicParsing="false" onAction="#onInventoryButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_inventory" stylesheets="@style.css" text=" Inventory" textFill="#913434">
+                  <Button fx:id="btn_inventory" layoutX="21.0" layoutY="165.0" mnemonicParsing="false" onAction="#onInventoryButtonClick" prefHeight="43.0" prefWidth="189.0" styleClass="btn_inventory" stylesheets="@style.css" text=" Inventory" textFill="#913434" translateX="-2.0" translateY="9.0">
                      <font>
                         <Font name="Algerian" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_members" layoutX="13.0" layoutY="214.0" mnemonicParsing="false" onAction="#onMembersButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_members" stylesheets="@style.css" text="Members" textFill="#913434">
+                  <Button fx:id="btn_members" layoutX="19.0" layoutY="213.0" mnemonicParsing="false" onAction="#onMembersButtonClick" prefHeight="43.0" prefWidth="189.0" styleClass="btn_members" stylesheets="@style.css" text="Members" textFill="#913434" translateY="11.0">
                      <font>
                         <Font name="Algerian" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_issue" layoutX="13.0" layoutY="265.0" mnemonicParsing="false" onAction="#onIssueButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_issue" stylesheets="@style.css" text="ISSUE" textFill="#913434">
+                  <Button fx:id="btn_issue" layoutX="18.0" layoutY="266.0" mnemonicParsing="false" onAction="#onIssueButtonClick" prefHeight="35.0" prefWidth="189.0" styleClass="btn_issue" stylesheets="@style.css" text="ISSUE" textFill="#913434" translateY="9.0">
                      <font>
                         <Font name="Algerian" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_return" layoutX="13.0" layoutY="315.0" mnemonicParsing="false" onAction="#onReturnButtonClick" prefHeight="43.0" prefWidth="214.0" styleClass="btn_return" stylesheets="@style.css" text="RETURN" textFill="#913434">
+                  <Button fx:id="btn_return" layoutX="17.0" layoutY="315.0" mnemonicParsing="false" onAction="#onReturnButtonClick" prefHeight="43.0" prefWidth="189.0" styleClass="btn_return" stylesheets="@style.css" text="RETURN" textFill="#913434" translateY="6.0">
                      <font>
                         <Font name="Algerian" size="20.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="35.0" fitWidth="43.0" layoutX="26.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="43.0" layoutX="26.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true" translateY="10.0">
                      <image>
                         <Image url="@icons/Gemini_Generated_Image_lnmd7flnmd7flnmd.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="30.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="30.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true" translateY="14.0">
                      <image>
                         <Image url="@icons/Screenshot%202026-02-19%20075204.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="31.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="35.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" translateY="11.0">
                      <image>
                         <Image url="@icons/images%20(1).png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="37.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="35.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true" translateX="-2.0" translateY="-2.0">
                      <image>
                         <Image url="@icons/Cheerful%20boy%20with%20colorful%20books.png" />
                      </image>
@@ -101,40 +96,13 @@
       </VBox>
       <Pane prefHeight="556.0" prefWidth="717.0" styleClass="pane_one1">
          <children>
-            <Pane fx:id="head" layoutX="9.0" layoutY="6.0" prefHeight="70.0" prefWidth="685.0" styleClass="head">
+            <Pane fx:id="head" layoutX="9.0" layoutY="6.0" prefHeight="83.0" prefWidth="685.0" styleClass="head">
                <children>
-                  <ImageView fitHeight="29.0" fitWidth="21.0" layoutX="394.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icons/download-removebg-preview.png" />
-                     </image>
-                  </ImageView>
-
-                  <TextField fx:id="txt_search" layoutX="423.0" layoutY="21.0" promptText="Search" styleClass="txt_search" stylesheets="@style.css">
-                     <font>
-                        <Font name="Century Gothic" size="12.0" />
-                     </font>
-                  </TextField>
-
-                  <Button fx:id="btn_search_icon" layoutX="590.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;">
-                     <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/900834-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-
-                  <Button fx:id="btn_user_profile" layoutX="640.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;">
-                     <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/3135715-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label layoutX="14.0" layoutY="11.0" prefHeight="49.0" prefWidth="258.0" text="Bookverse">
+      
+                  <Button fx:id="btn_search_icon" layoutX="590.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" />
+      
+                  <Button fx:id="btn_user_profile" layoutX="640.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" />
+                  <Label layoutX="14.0" layoutY="19.0" prefHeight="49.0" prefWidth="258.0" text="Bookverse">
                      <font>
                         <Font name="Algerian" size="43.0" />
                      </font>
@@ -143,7 +111,7 @@
                            <stops>
                               <Stop>
                                  <color>
-                                    <Color red="0.7368420958518982" green="0.09824561327695847" blue="0.09824561327695847" />
+                                    <Color green="0.32156863808631897" blue="0.3019607961177826" />
                                  </color>
                               </Stop>
                               <Stop offset="1.0">
@@ -155,20 +123,29 @@
                         </LinearGradient>
                      </textFill>
                   </Label>
-                  <Button fx:id="btn_search_icon1" layoutX="392.0" layoutY="20.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="25.0" style="-fx-background-color: transparent; -fx-cursor: hand;" />
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="563.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/900834-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="58.0" fitWidth="53.0" layoutX="614.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/3135715-removebg-preview.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
-            <Label layoutX="21.0" layoutY="83.0" text="Hello Readers,Welcome home!!">
+            <Label layoutX="18.0" layoutY="95.0" text="Hello Readers,Welcome home!!" textFill="#cbefeb">
                <font>
                   <Font name="Century Gothic Bold" size="34.0" />
                </font>
             </Label>
-            <Label layoutX="24.0" layoutY="136.0" text="Your gateway to endless exploration!">
+            <Label layoutX="16.0" layoutY="148.0" text="Your gateway to endless exploration!" textFill="#cbefeb">
                <font>
                   <Font name="Century Gothic" size="15.0" />
                </font>
             </Label>
-            <ImageView fitHeight="28.0" fitWidth="43.0" layoutX="315.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="86.0" fitWidth="165.0" layoutX="535.0" layoutY="105.0" opacity="0.28" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@icons/images-removebg-preview.png" />
                </image>
@@ -198,34 +175,29 @@
                   <ProgressBar fx:id="issue_progress" layoutX="12.0" layoutY="117.0" prefHeight="14.0" prefWidth="90.0" progress="0.25" />
                </children>
             </Pane>
-            <Label layoutX="24.0" layoutY="184.0" text="Today">
+            <Label layoutX="25.0" layoutY="361.0" text="Suggestions:" textFill="#cbefeb" translateX="-2.0" translateY="4.0">
                <font>
                   <Font name="Century Gothic Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="23.0" layoutY="369.0" text="Suggestions:">
-               <font>
-                  <Font name="Century Gothic Bold" size="15.0" />
-               </font>
-            </Label>
-            <Pane fx:id="pane_one1" layoutX="151.0" layoutY="215.0" prefHeight="140.0" prefWidth="119.0" styleClass="pane_one1">
+            <Pane fx:id="pane_one1" layoutX="151.0" layoutY="215.0" prefHeight="140.0" prefWidth="119.0" styleClass="pane_one">
                <children>
-                  <Label layoutX="15.0" layoutY="46.0" text="Returns">
+                  <Label layoutX="15.0" layoutY="46.0" text="Returns" textFill="#cbefeb">
                      <font>
                         <Font name="Century Gothic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="total_returns" layoutX="14.0" layoutY="14.0" text="0">
+                  <Label fx:id="total_returns" layoutX="14.0" layoutY="14.0" text="0" textFill="#cbefeb">
                      <font>
                         <Font name="Century Gothic Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="15.0" layoutY="97.0" text="My returns:" textFill="#7e7b7b">
+                  <Label layoutX="15.0" layoutY="97.0" text="My returns:" textFill="#cbefeb">
                      <font>
                         <Font name="Century Gothic" size="11.0" />
                      </font>
                   </Label>
-                  <Label fx:id="my_returns" layoutX="72.0" layoutY="97.0" text="0">
+                  <Label fx:id="my_returns" layoutX="72.0" layoutY="97.0" text="0" textFill="#cbefeb" translateX="4.0" translateY="2.0">
                      <font>
                         <Font name="Century Gothic" size="11.0" />
                      </font>
@@ -237,9 +209,9 @@
                   <URL value="@style.css" />
                </stylesheets>
             </Pane>
-            <Pane fx:id="pane_two" layoutX="403.0" layoutY="215.0" prefHeight="140.0" prefWidth="119.0" styleClass="pane_two" stylesheets="@style.css">
+            <Pane fx:id="pane_two" layoutX="403.0" layoutY="215.0" prefHeight="140.0" prefWidth="119.0" styleClass="pane_one" stylesheets="@style.css">
                <children>
-                  <Label layoutX="15.0" layoutY="46.0" text="Donations" textFill="#fffdfd">
+                  <Label layoutX="14.0" layoutY="46.0" text="Donations" textFill="#fffdfd">
                      <font>
                         <Font name="Century Gothic" size="15.0" />
                      </font>
@@ -256,7 +228,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="pane_three" layoutX="529.0" layoutY="215.0" prefHeight="140.0" prefWidth="165.0" styleClass="pane_three" stylesheets="@style.css">
+            <Pane fx:id="pane_three" layoutX="529.0" layoutY="215.0" prefHeight="140.0" prefWidth="165.0" styleClass="pane_one" stylesheets="@style.css">
                <children>
                   <Label layoutX="15.0" layoutY="46.0" text="Total Due" textFill="#fffdfd">
                      <font>
@@ -268,7 +240,7 @@
                         <Font name="Century Gothic Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="15.0" layoutY="97.0" text="My paid:" textFill="#ccc9c9">
+                  <Label layoutX="15.0" layoutY="97.0" text="My paid:" textFill="#cbefeb">
                      <font>
                         <Font name="Century Gothic" size="11.0" />
                      </font>
@@ -279,31 +251,31 @@
                      </font>
                   </Label>
                   <ProgressBar fx:id="due_progress" layoutX="12.0" layoutY="117.0" prefHeight="14.0" prefWidth="90.0" progress="0.94" />
-                  <ImageView fitHeight="96.0" fitWidth="70.0" layoutX="83.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="89.0" fitWidth="80.0" layoutX="83.0" layoutY="8.0" opacity="0.61" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/profit-icon-isolated-blue-260nw-2478639141-removebg-preview.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="pane_one11" layoutX="277.0" layoutY="215.0" prefHeight="140.0" prefWidth="119.0" styleClass="pane_one1">
+            <Pane fx:id="pane_one11" layoutX="277.0" layoutY="215.0" prefHeight="140.0" prefWidth="119.0" styleClass="pane_one">
                <children>
-                  <Label layoutX="15.0" layoutY="46.0" text="Fines">
+                  <Label layoutX="11.0" layoutY="46.0" text="Fines" textFill="#cbefeb">
                      <font>
                         <Font name="Century Gothic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="total_fines" layoutX="14.0" layoutY="14.0" text="0">
+                  <Label fx:id="total_fines" layoutX="14.0" layoutY="14.0" text="0" textFill="#cbefeb">
                      <font>
                         <Font name="Century Gothic Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="15.0" layoutY="97.0" text="My fines:" textFill="#7e7b7b">
+                  <Label layoutX="15.0" layoutY="97.0" text="My fines:" textFill="#cbefeb">
                      <font>
                         <Font name="Century Gothic" size="11.0" />
                      </font>
                   </Label>
-                  <Label fx:id="my_fines" layoutX="67.0" layoutY="97.0" text="0">
+                  <Label fx:id="my_fines" layoutX="67.0" layoutY="97.0" text="0" textFill="#cbefeb">
                      <font>
                         <Font name="Century Gothic" size="11.0" />
                      </font>
@@ -315,119 +287,73 @@
                   <URL value="@style.css" />
                </stylesheets>
             </Pane>
-            <Label layoutX="536.0" layoutY="194.0" text="My Dues">
-               <font>
-                  <Font name="Century Gothic Bold" size="15.0" />
-               </font>
-            </Label>
-            <Pane fx:id="pane_23" layoutX="612.0" layoutY="116.0" prefHeight="58.0" prefWidth="62.0" styleClass="pane_23">
+            <Pane fx:id="pane_one2" layoutX="16.0" layoutY="388.0" prefHeight="49.0" prefWidth="220.0" style="-fx-border-radius: 20;" styleClass="pane_one" stylesheets="@style.css">
                <children>
-                  <ImageView fitHeight="58.0" fitWidth="63.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icons/Screenshot_2026-02-20_040659-removebg-preview.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane fx:id="pane_one2" layoutX="22.0" layoutY="397.0" prefHeight="43.0" prefWidth="258.0" styleClass="pane_one" stylesheets="@style.css">
-               <children>
-                  <Label layoutX="15.0" layoutY="97.0" text="My issues:" textFill="#ccc9c9">
-                     <font>
-                        <Font name="Century Gothic" size="11.0" />
-                     </font>
-                  </Label>
-                  <Pane fx:id="most_inner_pane1" layoutX="201.0" prefHeight="43.0" prefWidth="43.0" styleClass="most_inner_pane" stylesheets="@style.css">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/images.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="15.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="17.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/It_Ends_with_Us_(Colleen_Hoover).png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="54.0" layoutY="1.0" text="It Ends With Us">
+                  <Label layoutX="54.0" layoutY="5.0" text="It Ends With Us">
                      <font>
                         <Font name="Century Gothic Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="54.0" layoutY="20.0" text="Collen Hoover" textFill="#fffdfd">
+                  <Label layoutX="53.0" layoutY="26.0" text="Collen Hoover" textFill="#fffdfd">
                      <font>
                         <Font name="Century Gothic" size="15.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="pane_one21" layoutX="22.0" layoutY="449.0" prefHeight="43.0" prefWidth="258.0" styleClass="pane_one" stylesheets="@style.css">
+            <Pane fx:id="pane_one21" layoutX="15.0" layoutY="444.0" prefHeight="48.0" prefWidth="220.0" styleClass="pane_one" stylesheets="@style.css">
                <children>
-                  <Pane fx:id="most_inner_pane11" layoutX="201.0" prefHeight="43.0" prefWidth="43.0" styleClass="most_inner_pane" stylesheets="@style.css">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/images.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <ImageView fitHeight="35.0" fitWidth="25.0" layoutX="15.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="25.0" layoutX="15.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" translateX="1.0" translateY="4.0">
                      <image>
                         <Image url="@icons/Screenshot%202026-02-20%20042943.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="54.0" layoutY="1.0" text="To Kill A Mockingbird">
+                  <Label layoutX="54.0" layoutY="1.0" text="To Kill A Mockingbird" translateX="-1.0" translateY="5.0">
                      <font>
                         <Font name="Century Gothic Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="54.0" layoutY="20.0" text="Harper Lee" textFill="#fffdfd">
+                  <Label layoutX="54.0" layoutY="20.0" text="Harper Lee" textFill="#fffdfd" translateY="3.0">
                      <font>
                         <Font name="Century Gothic" size="15.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="pane_one211" layoutX="22.0" layoutY="499.0" prefHeight="43.0" prefWidth="258.0" styleClass="pane_one" stylesheets="@style.css">
+            <Pane fx:id="pane_one211" layoutX="15.0" layoutY="499.0" prefHeight="49.0" prefWidth="220.0" styleClass="pane_one" stylesheets="@style.css">
                <children>
-                  <Pane fx:id="most_inner_pane111" layoutX="201.0" prefHeight="43.0" prefWidth="43.0" styleClass="most_inner_pane" stylesheets="@style.css">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/images.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="15.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="15.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" translateX="3.0" translateY="5.0">
                      <image>
                         <Image url="@icons/Screenshot%202026-02-20%20043209.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="54.0" layoutY="1.0" text="The Alchemist">
+                  <Label layoutX="54.0" layoutY="1.0" text="The Alchemist" translateY="5.0">
                      <font>
                         <Font name="Century Gothic Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="54.0" layoutY="20.0" text="Paulo Coelho" textFill="#fffdfd">
+                  <Label layoutX="54.0" layoutY="20.0" text="Paulo Coelho" textFill="#fffdfd" translateY="5.0">
                      <font>
                         <Font name="Century Gothic" size="15.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Label layoutX="306.0" layoutY="369.0" text="Terms and Conditions:">
+            <Label layoutX="299.0" layoutY="371.0" prefHeight="35.0" prefWidth="258.0" text="Terms and Conditions:" textFill="#ebebeb">
                <font>
-                  <Font name="Century Gothic Bold" size="15.0" />
+                  <Font name="Century Gothic Bold" size="22.0" />
                </font>
             </Label>
             <Pane layoutX="299.0" layoutY="397.0" prefHeight="140.0" prefWidth="384.0">
                <children>
-                  <Label layoutX="7.0" layoutY="14.0" text="1. Books with unpaid fines cannot be borrowed.">
+                  <Label layoutX="7.0" layoutY="14.0" text="1. Books with unpaid fines cannot be borrowed." textFill="#cbefeb">
                      <font>
-                        <Font name="Century Gothic Italic" size="15.0" />
+                        <Font name="Century Gothic Bold Italic" size="15.0" />
                      </font>
                   </Label>
                   <Label layoutX="14.0" layoutY="42.0" text=" ">
@@ -435,27 +361,27 @@
                         <Font name="Century Gothic Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="7.0" layoutY="42.0" text="2. For delay in returning books,">
+                  <Label layoutX="7.0" layoutY="42.0" text="2. For delay in returning books," textFill="#cbefeb">
                      <font>
-                        <Font name="Century Gothic Italic" size="15.0" />
+                        <Font name="Century Gothic Bold Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="7.0" layoutY="61.0" text="readers will be fined.">
+                  <Label layoutX="7.0" layoutY="61.0" text="readers will be fined." textFill="#cbefeb">
                      <font>
-                        <Font name="Century Gothic Italic" size="15.0" />
+                        <Font name="Century Gothic Bold Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="7.0" layoutY="87.0" text="3. You can issue 3 books at a time.">
+                  <Label layoutX="7.0" layoutY="87.0" text="3. You can issue 3 books at a time." textFill="#cbefeb">
                      <font>
-                        <Font name="Century Gothic Italic" size="15.0" />
+                        <Font name="Century Gothic Bold Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="7.0" layoutY="117.0" text="4. You can also donate books.">
+                  <Label layoutX="7.0" layoutY="117.0" text="4. You can also donate books." textFill="#cbefeb">
                      <font>
-                        <Font name="Century Gothic Italic" size="15.0" />
+                        <Font name="Century Gothic Bold Italic" size="15.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="75.0" fitWidth="119.0" layoutX="263.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="140.0" fitWidth="231.0" layoutX="153.0" layoutY="9.0" opacity="0.19" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/book-and-reading-statistics-min-removebg-preview.png" />
                      </image>

@@ -1,61 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.paint.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" spacing="20.0"
-      style="-fx-background-color: #1a2a44; -fx-border-color: #d14949; -fx-border-width: 2; -fx-background-radius: 15; -fx-border-radius: 15;"
-      stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.librarymanager.HelloController">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" spacing="20.0" style="-fx-border-color: #00524D; -fx-border-width: 2;" styleClass="root_one" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.librarymanager.HelloController">
 
     <children>
-        <Label text="CREATE ACCOUNT">
+        <Label text="CREATE ACCOUNT" textFill="#cbefeb">
             <font>
                 <Font name="Algerian" size="24.0" />
             </font>
-            <textFill>
-                <LinearGradient endX="1.0" endY="1.0">
-                    <stops>
-                        <Stop color="#d14949" />
-                        <Stop color="WHITE" offset="1.0" />
-                    </stops>
-                </LinearGradient>
-            </textFill>
         </Label>
 
-        <Text fill="#cccccc" strokeType="OUTSIDE" strokeWidth="0.0" text="Join the Bookverse community" textAlignment="CENTER">
+        <Text fill="#cbefeb" strokeType="OUTSIDE" strokeWidth="0.0" text="Join the Bookverse community" textAlignment="CENTER">
             <font>
                 <Font name="Candara" size="14.0" />
             </font>
         </Text>
 
-        <VBox maxWidth="300.0" spacing="12.0">
+        <VBox maxWidth="300.0" prefHeight="154.0" prefWidth="333.0" spacing="12.0">
             <children>
                 <Label text="Gmail Address" textFill="WHITE">
                     <font><Font name="System Bold" size="12.0" /></font>
                 </Label>
-                <TextField fx:id="signupEmail" prefHeight="35.0" promptText="Enter your Gmail"
-                           style="-fx-background-radius: 20; -fx-background-color: #2c3e50; -fx-text-fill: white;" />
+                <TextField fx:id="signupEmail" prefHeight="35.0" prefWidth="313.0" promptText="Enter your Gmail" style="-fx-background-radius: 20; -fx-text-fill: black;" />
 
                 <Label text="Create Password" textFill="WHITE">
                     <font><Font name="System Bold" size="12.0" /></font>
                 </Label>
-                <PasswordField fx:id="signupPass" prefHeight="35.0" promptText="Choose a strong password"
-                               style="-fx-background-radius: 20; -fx-background-color: #2c3e50; -fx-text-fill: white;" />
+                <PasswordField fx:id="signupPass" prefHeight="35.0" promptText="Choose a strong password" style="-fx-background-radius: 20; -fx-text-fill: black;" />
             </children>
         </VBox>
 
         <VBox alignment="CENTER" spacing="10.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#processSignUp" prefHeight="40.0" prefWidth="200.0"
-                        styleClass="add" text="SIGN UP NOW" textFill="WHITE">
+                <Button mnemonicParsing="false" onAction="#processSignUp" prefHeight="40.0" prefWidth="200.0" styleClass="add" text="SIGN UP NOW" textFill="WHITE">
                     <font><Font name="System Bold" size="14.0" /></font>
                 </Button>
 
-                <Button mnemonicParsing="false" onAction="#closePopup" prefHeight="30.0" prefWidth="100.0"
-                        style="-fx-background-color: transparent; -fx-text-fill: #aaaaaa;" text="Cancel">
+                <Button mnemonicParsing="false" onAction="#closePopup" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-text-fill: #aaaaaa;" text="Cancel" textFill="#cbefeb">
                     <font><Font size="12.0" /></font>
                 </Button>
             </children>

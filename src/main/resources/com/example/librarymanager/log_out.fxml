@@ -11,63 +11,30 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox fx:id="root_one" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="936.0" styleClass="root_one" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.librarymanager.HelloController">
    <children>
       <Pane prefHeight="519.0" prefWidth="932.0">
          <children>
-            <Label layoutX="84.0" layoutY="14.0" text="Bookverse">
+            <Label layoutX="109.0" layoutY="14.0" prefHeight="54.0" prefWidth="241.0" text="Bookverse" textFill="#caede9" translateX="-30.0">
                <font>
-                  <Font name="Algerian" size="19.0" />
+                  <Font name="Algerian" size="40.0" />
                </font>
-               <textFill>
-                  <LinearGradient endX="0.897727243828051" endY="0.9090909054785064" startX="0.8750000009031007">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.8736842274665833" green="0.3106432855129242" blue="0.3106432855129242" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.621052622795105" green="0.5819492936134338" blue="0.5819492936134338" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </textFill>
             </Label>
-            <Pane layoutX="14.0" layoutY="14.0" prefHeight="47.0" prefWidth="61.0" styleClass="logo">
+            <Pane layoutX="5.0" layoutY="14.0" prefHeight="69.0" prefWidth="68.0">
                <children>
-                  <ImageView fitHeight="47.0" fitWidth="61.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="62.0" fitWidth="70.0" layoutY="6.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@icons/images-removebg-preview.png" />
+                        <Image url="@icons/h.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Label layoutX="84.0" layoutY="38.0" text="Library Management">
-               <textFill>
-                  <LinearGradient endX="0.897727243828051" endY="0.9090909054785064" startX="0.8750000009031007">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.8736842274665833" green="0.3106432855129242" blue="0.3106432855129242" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.8842105269432068" green="0.8350877165794373" blue="0.8350877165794373" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </textFill>
+            <Label layoutX="109.0" layoutY="53.0" prefHeight="34.0" prefWidth="206.0" text="Library Management" textFill="#cbefeb" translateX="-27.0">
                <font>
-                  <Font name="Bookman Old Style" size="12.0" />
+                  <Font name="Bookman Old Style" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="363.0" layoutY="190.0" prefHeight="34.0" prefWidth="191.0" text="Version 1.0 Now Live" textFill="#eaeaea">
+            <Label layoutX="363.0" layoutY="190.0" prefHeight="34.0" prefWidth="191.0" text="Version 1.0 Now Live" textFill="#cbefeb">
                <font>
                   <Font name="Britannic Bold" size="19.0" />
                </font>
@@ -82,16 +49,16 @@
                   <Font name="Century Gothic Bold" size="35.0" />
                </font>
                <textFill>
-                  <LinearGradient endX="0.897727243828051" endY="0.9090909054785064" startX="0.8750000009031007">
+                  <LinearGradient endX="1.0" endY="1.0">
                      <stops>
                         <Stop>
                            <color>
-                              <Color red="0.8736842274665833" green="0.3106432855129242" blue="0.3106432855129242" />
+                              <Color red="0.7960784435272217" green="0.9372549057006836" blue="0.9215686321258545" />
                            </color>
                         </Stop>
                         <Stop offset="1.0">
                            <color>
-                              <Color red="0.19005848467350006" green="0.6100876927375793" blue="0.6842105388641357" />
+                              <Color red="0.7461555004119873" green="0.9298245906829834" blue="0.9083964824676514" opacity="0.9700000286102295" />
                            </color>
                         </Stop>
                      </stops>
@@ -103,91 +70,43 @@
                   <Font name="Century Gothic Bold" size="35.0" />
                </font>
                <textFill>
-                  <LinearGradient endX="0.897727243828051" endY="0.9090909054785064" startX="0.8750000009031007">
+                  <LinearGradient endX="1.0" endY="1.0">
                      <stops>
                         <Stop>
                            <color>
-                              <Color red="0.8736842274665833" green="0.3106432855129242" blue="0.3106432855129242" />
+                              <Color red="0.7960784435272217" green="0.9372549057006836" blue="0.9215686321258545" />
                            </color>
                         </Stop>
                         <Stop offset="1.0">
                            <color>
-                              <Color red="0.19005848467350006" green="0.6100876927375793" blue="0.6842105388641357" />
+                              <Color red="0.7461555004119873" green="0.9298245906829834" blue="0.9083964824676514" opacity="0.9700000286102295" />
                            </color>
                         </Stop>
                      </stops>
                   </LinearGradient>
                </textFill>
             </Label>
-            <Label layoutX="175.0" layoutY="321.0" prefHeight="21.0" prefWidth="581.0" text="A modern, secure and scalable platform for managing libraries.">
+            <Label layoutX="175.0" layoutY="321.0" prefHeight="21.0" prefWidth="581.0" text="A modern, secure and scalable platform for managing libraries." textFill="#caede9f7">
                <font>
                   <Font name="Candara" size="22.0" />
                </font>
-               <textFill>
-                  <LinearGradient endX="0.897727243828051" endY="1.0" startX="0.8939393948424946" startY="0.10984847039887402">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.5155482292175293" green="0.5600000023841858" blue="0.30799999833106995" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.47999998927116394" green="0.75" blue="0.7469162344932556" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </textFill>
             </Label>
-            <Label layoutX="230.0" layoutY="356.0" text="From donating books to issue -return of books-everything in one place!!">
+            <Label layoutX="230.0" layoutY="356.0" text="From donating books to issue -return of books-everything in one place!!" textFill="#caede9f7">
                <font>
                   <Font name="Candara" size="14.0" />
                </font>
-               <textFill>
-                  <LinearGradient endX="0.897727243828051" endY="1.0" startX="0.8939393948424946" startY="0.10984847039887402">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.5155482292175293" green="0.5600000023841858" blue="0.30799999833106995" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.47999998927116394" green="0.75" blue="0.7469162344932556" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </textFill>
             </Label>
-            <ImageView fitHeight="124.0" fitWidth="225.0" layoutX="363.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="137.0" fitWidth="138.0" layoutX="374.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@icons/Screenshot_2026-02-19_083955-removebg-preview.png" />
                </image>
             </ImageView>
-            <Label layoutX="276.0" layoutY="401.0" text="Already Have an account??">
-               <textFill>
-                  <LinearGradient endX="0.897727243828051" endY="1.0" startX="0.8939393948424946" startY="0.2803030158534195">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.47525379061698914" green="0.30799999833106995" blue="0.5600000023841858" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.2052241712808609" green="0.5894736647605896" blue="0.5830695033073425" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </textFill>
+            <Label layoutX="276.0" layoutY="401.0" text="Already Have an account??" textFill="#caede9f7">
                <font>
                   <Font name="Calisto MT Bold" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="484.0" layoutY="396.0" mnemonicParsing="false" onAction="#onLoginClick" prefHeight="26.0" prefWidth="88.0" styleClass="add" text="Log In">
+            <Button layoutX="475.0" layoutY="396.0" mnemonicParsing="false" onAction="#onLoginClick" prefHeight="26.0" prefWidth="88.0" styleClass="add" text="Log In">
                <font>
                   <Font name="Algerian" size="12.0" />
                </font>
@@ -196,61 +115,29 @@
                      <stops>
                         <Stop>
                            <color>
-                              <Color red="0.0619356706738472" green="0.04011695832014084" blue="0.0736842080950737" />
+                              <Color red="1.0" green="1.0" blue="1.0" />
                            </color>
                         </Stop>
                         <Stop offset="1.0">
                            <color>
-                              <Color red="0.9473684430122375" green="0.16842105984687805" blue="0.16842105984687805" />
+                              <Color red="0.7208144068717957" green="0.9122806787490845" blue="0.8899429440498352" opacity="0.9700000286102295" />
                            </color>
                         </Stop>
                      </stops>
                   </LinearGradient>
                </textFill>
             </Button>
-            <Label layoutX="291.0" layoutY="457.0" text="Don't Have an account??">
-               <textFill>
-                  <LinearGradient endX="0.897727243828051" endY="1.0" startX="0.8939393948424946" startY="0.2803030158534195">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.47525379061698914" green="0.30799999833106995" blue="0.5600000023841858" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.2052241712808609" green="0.5894736647605896" blue="0.5830695033073425" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </textFill>
+            <Label layoutX="287.0" layoutY="451.0" text="Don't Have an account??" textFill="#caede9f7">
                <font>
                   <Font name="Calisto MT Bold" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="484.0" layoutY="451.0" mnemonicParsing="false" onAction="#onSignUpClick" prefHeight="26.0" prefWidth="88.0" styleClass="add" text="Sign up">
+            <Button layoutX="475.0" layoutY="446.0" mnemonicParsing="false" onAction="#onSignUpClick" prefHeight="26.0" prefWidth="88.0" styleClass="add" text="Sign up" textFill="WHITE">
                <font>
                   <Font name="Algerian" size="12.0" />
                </font>
-               <textFill>
-                  <LinearGradient endX="0.897727243828051" endY="1.0" startX="0.8939393948424946" startY="0.2803030158534195">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.0619356706738472" green="0.04011695832014084" blue="0.0736842080950737" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.9473684430122375" green="0.16842105984687805" blue="0.16842105984687805" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </textFill>
             </Button>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="675.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="188.0" fitWidth="318.0" layoutX="630.0" layoutY="367.0" opacity="0.32" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="3.0">
                <image>
                   <Image url="@icons/book-and-reading-statistics-min-removebg-preview.png" />
                </image>
