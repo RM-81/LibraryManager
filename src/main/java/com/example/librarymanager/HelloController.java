@@ -119,6 +119,22 @@ public class HelloController {
     private final String USER_DATA_FILE = "user_data.txt";
 
     @FXML
+    private void onChatButtonClick(ActionEvent event) {
+        try {
+            // Load the new FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("community-chat.fxml"));
+            Parent root = loader.load();
+
+            // Switch the scene on the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(root);
+            stage.setTitle("Bookverse - Community Chat");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     public void initialize() {
         loadBooksFromFile();
         loadMembersFromFile();

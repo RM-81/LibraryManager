@@ -320,13 +320,13 @@
                   <Font name="Century Gothic Bold" size="15.0" />
                </font>
             </Label>
-            <Pane fx:id="pane_23" layoutX="612.0" layoutY="116.0" prefHeight="58.0" prefWidth="62.0" styleClass="pane_23">
+            <Pane fx:id="pane_23" layoutX="518.0" layoutY="122.0" prefHeight="43.0" prefWidth="156.0" styleClass="pane_23">
                <children>
-                  <ImageView fitHeight="58.0" fitWidth="63.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icons/Screenshot_2026-02-20_040659-removebg-preview.png" />
-                     </image>
-                  </ImageView>
+                  <Button fx:id="btn_chat" layoutX="-2.0" layoutY="3.0" mnemonicParsing="false" onAction="#onChatButtonClick" prefHeight="28.0" prefWidth="160.0" styleClass="btn_chat" stylesheets="@style.css" text="CHAT" textFill="#913434">
+                     <font>
+                        <Font name="Algerian" size="20.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
             <Pane fx:id="pane_one2" layoutX="22.0" layoutY="397.0" onMouseClicked="#handleone" prefHeight="43.0" prefWidth="258.0" styleClass="pane_one" stylesheets="@style.css">
