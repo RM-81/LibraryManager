@@ -329,22 +329,13 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="pane_one2" layoutX="22.0" layoutY="397.0" prefHeight="43.0" prefWidth="258.0" styleClass="pane_one" stylesheets="@style.css">
+            <Pane fx:id="pane_one2" layoutX="22.0" layoutY="397.0" onMouseClicked="#handleone" prefHeight="43.0" prefWidth="258.0" styleClass="pane_one" stylesheets="@style.css">
                <children>
                   <Label layoutX="15.0" layoutY="97.0" text="My issues:" textFill="#ccc9c9">
                      <font>
                         <Font name="Century Gothic" size="11.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="most_inner_pane1" layoutX="201.0" prefHeight="43.0" prefWidth="43.0" styleClass="most_inner_pane" stylesheets="@style.css">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/images.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="15.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/It_Ends_with_Us_(Colleen_Hoover).png" />
@@ -362,17 +353,8 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="pane_one21" layoutX="22.0" layoutY="449.0" prefHeight="43.0" prefWidth="258.0" styleClass="pane_one" stylesheets="@style.css">
+            <Pane fx:id="pane_one21" layoutX="22.0" layoutY="449.0" onMouseClicked="#handletwo" prefHeight="43.0" prefWidth="258.0" styleClass="pane_one" stylesheets="@style.css">
                <children>
-                  <Pane fx:id="most_inner_pane11" layoutX="201.0" prefHeight="43.0" prefWidth="43.0" styleClass="most_inner_pane" stylesheets="@style.css">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/images.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
                   <ImageView fitHeight="35.0" fitWidth="25.0" layoutX="15.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/Screenshot%202026-02-20%20042943.png" />
@@ -390,17 +372,8 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="pane_one211" layoutX="22.0" layoutY="499.0" prefHeight="43.0" prefWidth="258.0" styleClass="pane_one" stylesheets="@style.css">
+            <Pane fx:id="pane_one211" layoutX="22.0" layoutY="499.0" onMouseClicked="#handlethree" prefHeight="43.0" prefWidth="258.0" styleClass="pane_one" stylesheets="@style.css">
                <children>
-                  <Pane fx:id="most_inner_pane111" layoutX="201.0" prefHeight="43.0" prefWidth="43.0" styleClass="most_inner_pane" stylesheets="@style.css">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/images.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="15.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/Screenshot%202026-02-20%20043209.png" />

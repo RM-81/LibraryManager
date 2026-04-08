@@ -1,6 +1,7 @@
-2,q,er,Issued,10,2026-04-08,2026-03-31,480.0,s
-W,23,M,Available,2,none,none,0.0,none
+2,q,er,Available,13,none,none,80.0,p
+W,23,M,Available,4,none,none,40.0,none
 23,M,M,Available,5,none,none,0.0,none
 2w,MS,MS,Available,0,none,none,0.0,none
-3,p,s,Available,5,none,none,480.0,s
+3,p,s,Available,5,none,none,0.0,none
 a,a,a,Available,0,none,none,0.0,none
+24,May,k,Available,0,none,none,0.0,none

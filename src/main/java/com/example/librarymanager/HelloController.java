@@ -18,8 +18,13 @@ import java.time.LocalDate;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+
 import java.io.*;
 import java.util.Scanner;
+
+import java.awt.Desktop;
+import java.net.URI;
+import javafx.scene.input.MouseEvent;
 
 public class HelloController {
 
@@ -1003,6 +1008,51 @@ public class HelloController {
 
         } catch (NumberFormatException e) {
             showAlert(Alert.AlertType.ERROR, "Input Error", "Invalid numeric amount.");
+        }
+    }
+
+    @FXML
+    private void handleone(MouseEvent event) {
+        String url = "https://online.fliphtml5.com/shbfot/qcvx/#p=10";
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(new URI(url));
+            } else {
+                // Laptop/Windows specific fallback
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+            }
+        } catch (Exception e) {
+            System.out.println("Could not open browser: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handletwo(MouseEvent event) {
+        String url = "https://online.anyflip.com/kcdpv/ecxn/mobile/index.html";
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(new URI(url));
+            } else {
+                // Laptop/Windows specific fallback
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+            }
+        } catch (Exception e) {
+            System.out.println("Could not open browser: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handlethree(MouseEvent event) {
+        String url = "https://online.fliphtml5.com/wqjwb/dvbo/#p=1";
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(new URI(url));
+            } else {
+                // Laptop/Windows specific fallback
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+            }
+        } catch (Exception e) {
+            System.out.println("Could not open browser: " + e.getMessage());
         }
     }
 }
